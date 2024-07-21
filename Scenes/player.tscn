@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://cihlctj3okwe2"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_yxmrb"]
+[ext_resource type="Texture2D" uid="uid://cbapc2wifnpur" path="res://Assets/TempTiles/slime_green.png" id="2_4k5wm"]
+[ext_resource type="PackedScene" uid="uid://12wxamserfhi" path="res://Scenes/wand.tscn" id="3_sc40d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2wjo"]
+atlas = ExtResource("2_4k5wm")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euqvv"]
+atlas = ExtResource("2_4k5wm")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqkw8"]
+atlas = ExtResource("2_4k5wm")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1j5b"]
+atlas = ExtResource("2_4k5wm")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtntw"]
+atlas = ExtResource("2_4k5wm")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8v4c"]
+atlas = ExtResource("2_4k5wm")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dew31"]
+atlas = ExtResource("2_4k5wm")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5o2g"]
+atlas = ExtResource("2_4k5wm")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vasw0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2wjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euqvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqkw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1j5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtntw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8v4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dew31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5o2g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2nu56"]
+radius = 8.0
+height = 16.0
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_yxmrb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vasw0")
+autoplay = "default"
+frame_progress = 0.114915
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_2nu56")
+
+[node name="Node2D" parent="." instance=ExtResource("3_sc40d")]
