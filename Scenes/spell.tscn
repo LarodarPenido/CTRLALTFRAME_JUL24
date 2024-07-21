@@ -32,11 +32,7 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="CollisionShape2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_s0qft")
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
-[connection signal="area_entered" from="CollisionShape2D" to="." method="_on_collision_shape_2d_area_entered"]
-[connection signal="body_entered" from="CollisionShape2D" to="." method="_on_collision_shape_2d_body_entered"]
