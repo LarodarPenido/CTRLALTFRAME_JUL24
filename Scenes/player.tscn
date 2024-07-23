@@ -75,6 +75,7 @@ height = 16.0
 [node name="Node2D" type="CharacterBody2D"]
 collision_mask = 12
 script = ExtResource("1_yxmrb")
+acceleration = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vasw0")
