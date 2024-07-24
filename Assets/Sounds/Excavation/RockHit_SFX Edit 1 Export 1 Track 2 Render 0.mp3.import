@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cbjchwsjggnd1"
+path="res://.godot/imported/RockHit_SFX Edit 1 Export 1 Track 2 Render 0.mp3-bb4a109c34e4e54827ca45ddafd9d928.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Excavation/RockHit_SFX Edit 1 Export 1 Track 2 Render 0.mp3"
+dest_files=["res://.godot/imported/RockHit_SFX Edit 1 Export 1 Track 2 Render 0.mp3-bb4a109c34e4e54827ca45ddafd9d928.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

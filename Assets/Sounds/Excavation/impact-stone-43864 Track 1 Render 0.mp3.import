@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dcgip5almgni3"
+path="res://.godot/imported/impact-stone-43864 Track 1 Render 0.mp3-690796aecff45ef0da2e8e043ccaf0d3.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Excavation/impact-stone-43864 Track 1 Render 0.mp3"
+dest_files=["res://.godot/imported/impact-stone-43864 Track 1 Render 0.mp3-690796aecff45ef0da2e8e043ccaf0d3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
