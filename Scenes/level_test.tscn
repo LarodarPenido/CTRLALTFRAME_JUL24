@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dhdopxmmw8rsw"]
+[gd_scene load_steps=28 format=3 uid="uid://dhdopxmmw8rsw"]
 
 [ext_resource type="Texture2D" uid="uid://cf3xyi1cr1xhy" path="res://Assets/TempTiles/tilemap2.png" id="1_21caf"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator.gd" id="2_gu4rp"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_heqv5"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="10_sfkad"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_ibmf3"]
+[ext_resource type="PackedScene" uid="uid://cgceftjc8dnac" path="res://Scenes/ghost.tscn" id="13_we6ts"]
+[ext_resource type="PackedScene" uid="uid://cb7qsha3gosur" path="res://collectibles_manager.tscn" id="14_dipkh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvun"]
 friction = 0.53
@@ -4197,3 +4199,17 @@ follow_targets = [NodePath("../../Node2D/Cam_Target_Player"), NodePath("../../Ca
 tween_resource = SubResource("Resource_eliit")
 
 [node name="Cam_Target_Ship" type="Marker2D" parent="."]
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="Node2D" parent="Node2D2" instance=ExtResource("13_we6ts")]
+
+[node name="Node2D2" parent="Node2D2" instance=ExtResource("13_we6ts")]
+position = Vector2(-240, 184)
+
+[node name="Node2D3" parent="Node2D2" instance=ExtResource("13_we6ts")]
+position = Vector2(56, 80)
+
+[node name="CollectiblesManager" parent="." groups=["CollectiblesManager"] instance=ExtResource("14_dipkh")]
+
+[editable path="Node2D"]

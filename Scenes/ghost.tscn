@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgceftjc8dnac"]
+
+[ext_resource type="Script" path="res://Scripts/ghost.gd" id="1_6i6hu"]
+[ext_resource type="Texture2D" uid="uid://bv1tvmtfsayeq" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/000.png" id="1_yqg8i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wffmb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5xxo"]
+atlas = ExtResource("1_yqg8i")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtc6u"]
+atlas = ExtResource("1_yqg8i")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hht7u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5xxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtc6u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_6i6hu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wffmb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hht7u")
+autoplay = "default"
+frame_progress = 0.99951
+
+[node name="Estalecido" type="Timer" parent="."]

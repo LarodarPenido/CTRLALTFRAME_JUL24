@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @export var speed = 400
 @export var acceleration = 1
 var current_speed: Vector2 = Vector2.ZERO

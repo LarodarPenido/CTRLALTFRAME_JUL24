@@ -1,0 +1,74 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c78hinwaisvpk"]
+
+[ext_resource type="FontFile" uid="uid://cu4nk15e73q80" path="res://Assets/Fonts/Gluten-ExtraBold.ttf" id="1_oq2re"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7iicp"]
+bg_color = Color(0.6906, 0.3672, 0.72, 1)
+skew = Vector2(0.495, 0)
+border_width_left = 25
+border_color = Color(0.8, 0.4, 0.8, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 30
+expand_margin_bottom = 5.0
+shadow_size = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kp14d"]
+bg_color = Color(0.6906, 0.3672, 0.72, 1)
+skew = Vector2(0.495, 0)
+border_width_left = 25
+border_color = Color(0.8, 0.4, 0.8, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 30
+expand_margin_left = 5.0
+expand_margin_top = 11.0
+expand_margin_right = 14.0
+shadow_size = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wc0h"]
+bg_color = Color(0.6906, 0.3672, 0.72, 1)
+skew = Vector2(0.495, 0)
+border_width_left = 25
+border_color = Color(0.8, 0.4, 0.8, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 30
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aa3ao"]
+bg_color = Color(0.971891, 0.39411, 0, 1)
+skew = Vector2(0.465, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_meu2b"]
+bg_color = Color(0.690196, 0.368627, 0.721569, 1)
+skew = Vector2(0.13, 0)
+border_width_left = 90
+border_width_top = 55
+border_width_right = 45
+border_width_bottom = 55
+border_color = Color(0.8, 0.4, 0.8, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[resource]
+default_font = ExtResource("1_oq2re")
+default_font_size = 40
+Button/colors/font_color = Color(1, 0.8, 0.603922, 1)
+Button/constants/h_separation = 5
+Button/styles/hover = SubResource("StyleBoxFlat_7iicp")
+Button/styles/normal = SubResource("StyleBoxFlat_kp14d")
+Button/styles/pressed = SubResource("StyleBoxFlat_4wc0h")
+HSeparator/constants/separation = 40
+HSeparator/styles/separator = SubResource("StyleBoxFlat_aa3ao")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_meu2b")

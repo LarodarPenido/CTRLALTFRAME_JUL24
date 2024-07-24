@@ -8,6 +8,10 @@ extends GaeaGenerator2D
 ## @tutorial(Gaea's Getting Started tutorial): https://benjatk.github.io/Gaea/#/tutorials/getting_started
 
 
+@onready var collectibles_manager = $"../CollectiblesManager"
+
+
+
 class Walker:
 	var pos = Vector2.ZERO
 	var dir = Vector2.ZERO
@@ -52,6 +56,8 @@ func generate(starting_grid: GaeaGrid = null) -> void:
 
 	grid_updated.emit()
 	generation_finished.emit()
+	print("Calling count_total_destructible_tiles")
+	collectibles_manager.count_total_destructible_tiles()
 
 
 func erase() -> void:

@@ -3,6 +3,8 @@ extends Node2D
 @onready var cooldown_timer = $CooldownTimer
 @onready var can_shoot = true
 
+@export var spell_cooldown = .5
+
 @onready var wand_point = $WandPoint
 @onready var wand_sprite = $WandSprite
 
@@ -40,7 +42,7 @@ func cast_spell():
 		get_tree().root.add_child(_spell)
 		spell_sound.play()
 		can_shoot = false
-		cooldown_timer.start()
+		cooldown_timer.start(spell_cooldown)
 
 
 func _on_cooldown_timer_timeout():
