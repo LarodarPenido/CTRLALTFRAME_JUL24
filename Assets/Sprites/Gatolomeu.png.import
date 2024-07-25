@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqp1vyypsbou8"
-path="res://.godot/imported/up-arrow-hover.png-98795500c92da7b7df933c5fb4926de3.ctex"
+uid="uid://fwtwkfd2lkuk"
+path="res://.godot/imported/Gatolomeu.png-7cc293d3149cd142f31860ba27e318a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/up-arrow-hover.png"
-dest_files=["res://.godot/imported/up-arrow-hover.png-98795500c92da7b7df933c5fb4926de3.ctex"]
+source_file="res://Assets/Sprites/Gatolomeu.png"
+dest_files=["res://.godot/imported/Gatolomeu.png-7cc293d3149cd142f31860ba27e318a6.ctex"]
 
 [params]
 

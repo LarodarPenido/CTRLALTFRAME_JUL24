@@ -1,5 +1,6 @@
 extends Node2D
 
+signal  tile_destroyed
 
 @export var destructible_tile_id = 1
 @export var collectable_scene = preload("res://Scenes/Collectable.tscn")
@@ -27,6 +28,14 @@ var required_items = {
 	"star": 1,
 	"book": 1
 }
+
+## SFX tiles sounds
+
+
+
+
+ 
+
 
 func _ready():
 	count_total_destructible_tiles()
@@ -57,6 +66,9 @@ func count_items() -> int:
 
 
 func handle_tile_destruction(map_position, collision_position):
+	
+	
+	
 	var tilemap = get_parent().get_node("TileMap")
 	tilemap.erase_cell(0, map_position)
 	total_destructible_tiles -= 1
@@ -71,7 +83,8 @@ func handle_tile_destruction(map_position, collision_position):
 		#print("spawn can happen")
 		spawn_collectable(collision_position)
 	else:
-		print("spawn cant happen")
+		pass
+		#print("spawn cant happen")
 	spawn_sparks(collision_position)
 
 
@@ -82,7 +95,7 @@ func spawn_collectable(_position):
 
 		var collectable = collectable_scene.instantiate()
 		collectable.global_position = _position
-		collectable.set("item_type", spawn_item)  ## BUG just marked bug to check later
+		collectable.set_item_type(spawn_item)
 		get_tree().root.add_child(collectable)
 		
 		
@@ -101,7 +114,7 @@ func choose_item_to_spawn():
 	required_items[random_key] -= 1
 	if required_items[random_key] <= 0:
 		required_items.erase(random_key)
-
+	print(random_key)
 	return random_key
 	
 	

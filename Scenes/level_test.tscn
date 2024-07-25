@@ -4221,7 +4221,7 @@ AnalogMonitorResolution = Vector2(256, 256)
 ScreenShake = false
 ScreenShakePower = 0.1
 
-[node name="Node2D" type="Node2D"]
+[node name="LevelTest" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_biv4l")

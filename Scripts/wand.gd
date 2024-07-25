@@ -11,7 +11,8 @@ extends Node2D
 const SPELL = preload("res://Scenes/spell.tscn")
 
 ##SFX
-@onready var spell_sound = $AudioStreamPlayer2D
+#@onready var spell_sound = $AudioStreamPlayer2D
+@export var audio_manager: Node2D
 
 ##VFX
 
@@ -26,21 +27,22 @@ func _process(delta):
 		wand_sprite.flip_v = true
 	elif mouse_pos.x > global_position.x:
 		wand_sprite.flip_v = false
-	if mouse_pos.y > global_position.y:
-		show_behind_parent = false
-		
-	elif mouse_pos.y < global_position.y:
-		show_behind_parent = true
+	#if mouse_pos.y > global_position.y:
+		#show_behind_parent = false
+		#
+	#elif mouse_pos.y < global_position.y:
+		#show_behind_parent = true
 
 func cast_spell():
 	if can_shoot:
 		var _spell = SPELL.instantiate()
+		_spell.spell_hit.connect(audio_manager._on_spell_hit)
 		var mouse_pos = get_global_mouse_position()
 		var direction = (mouse_pos - wand_point.global_position).normalized()
 		_spell.global_position = wand_point.global_position
 		_spell.direction = direction
 		get_tree().root.add_child(_spell)
-		spell_sound.play()
+		#spell_sound.play()
 		can_shoot = false
 		cooldown_timer.start(spell_cooldown)
 

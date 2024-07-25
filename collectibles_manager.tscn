@@ -4,3 +4,6 @@
 
 [node name="CollectiblesManager" type="Node2D"]
 script = ExtResource("1_thvr7")
+
+[node name="RockBreak" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
