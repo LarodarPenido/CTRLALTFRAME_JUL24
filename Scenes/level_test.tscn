@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://dhdopxmmw8rsw"]
+[gd_scene load_steps=29 format=3 uid="uid://dhdopxmmw8rsw"]
 
 [ext_resource type="Texture2D" uid="uid://cf3xyi1cr1xhy" path="res://Assets/TempTiles/tilemap2.png" id="1_21caf"]
+[ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_o1yh7"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator.gd" id="2_gu4rp"]
 [ext_resource type="PackedScene" uid="uid://8qvcp2v66yo5" path="res://Scenes/Collectable.tscn" id="3_5sqrg"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/fill.gd" id="3_gp6rl"]
@@ -14,8 +15,6 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_ibmf3"]
 [ext_resource type="PackedScene" uid="uid://cgceftjc8dnac" path="res://Scenes/ghost.tscn" id="13_we6ts"]
 [ext_resource type="PackedScene" uid="uid://cb7qsha3gosur" path="res://collectibles_manager.tscn" id="14_dipkh"]
-[ext_resource type="Script" path="res://addons/post_processing/node/post_process.gd" id="15_xh5db"]
-[ext_resource type="Script" path="res://addons/post_processing/resource/post_processing_configuration.gd" id="16_nhy2o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvun"]
 friction = 0.53
@@ -4148,80 +4147,8 @@ duration = 1.0
 transition = 0
 ease = 2
 
-[sub_resource type="Resource" id="Resource_cojun"]
-script = ExtResource("16_nhy2o")
-reload = false
-ASCII = false
-ASCIISize = Vector2(4, 9)
-ChromaticAberration = false
-StrenghtCA = 1.0
-Blur = false
-L_O_D = 1.0
-FishEye = false
-FishEyeAspect = 1.0
-FishEyeDistortion = 1.0
-FishEyeRadius = 1.0
-FishEyeAlpha = 1.0
-FishEyeCrop = 1.0
-FishEyeCropColor = Color(0, 0, 0, 1)
-Vignette = true
-VignetteIntensity = 0.4
-VignetteOpacity = 0.5
-VignetteR_G_B = Color(0.237667, 0, 0.46, 1)
-Glitch = false
-GlitchRange = 0.05
-GlitchNoiseQuality = 250.0
-GlitchIntenity = 0.0088
-GlitchOffset = 0.03
-GlitchColorOffset = 1.3
-Outline = false
-OutlineColor = Color(0, 0, 0, 1)
-OutlineThreshold = 0.0
-OutlineBlend = 0.01
-Grain = false
-GrainPower = 75
-CircularWaves = false
-CircularWavesAmplitude = 2.0
-CircularWavesFrequency = 12.69
-CircularWavesRippleRate = 9.2
-SpeedLines = false
-SpeedLinesColor = Color(1, 1, 1, 1)
-SpeedLinesCount = 2
-SpeedLineDensity = 0.072
-SpeedLineSpeed = 20
-ColorCorrection = false
-ColorCorrectionTint = Color(0, 0, 0, 1)
-ColorCorrectionBrightness = 0.0
-ColorCorrectionSaturation = 0.0
-Palette = false
-Pixelate = false
-PixelatePixelSize = 8
-CRT = false
-overlay = false
-scanlines_opacity = 0.4
-scanlines_width = 0.25
-grille_opacity = 0.3
-pixelate = true
-roll_speed = 8.0
-roll_size = 15.0
-roll_variation = 1.8
-distort_intensity = 0.05
-noise_opacity = 0.4
-noise_speed = 5.0
-static_noise_intensity = 0.06
-aberration = 0.03
-brightness = 1.4
-discolor = true
-warp_amount = 1.0
-clip_warp = false
-vignette_intensity = 0.4
-vignette_opacity = 0.5
-AnalogMonitor = false
-AnalogMonitorResolution = Vector2(256, 256)
-ScreenShake = false
-ScreenShakePower = 0.1
-
 [node name="LevelTest" type="Node2D"]
+script = ExtResource("1_o1yh7")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_biv4l")
@@ -4287,10 +4214,5 @@ position = Vector2(56, 80)
 
 [node name="CollectiblesManager" parent="." groups=["CollectiblesManager"] instance=ExtResource("14_dipkh")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PostProcess" type="CanvasLayer" parent="CanvasLayer"]
-script = ExtResource("15_xh5db")
-configuration = SubResource("Resource_cojun")
-
 [editable path="Node2D"]
+[editable path="Node2D/Node2D"]

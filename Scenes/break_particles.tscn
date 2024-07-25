@@ -35,11 +35,13 @@ hue_variation_max = 0.05
 script = ExtResource("1_xswap")
 
 [node name="HitParticles" type="GPUParticles2D" parent="."]
+amount = 24
 process_material = SubResource("ParticleProcessMaterial_o2dwd")
 lifetime = 2.5
 explosiveness = 1.0
 
 [node name="BreakParticles" type="GPUParticles2D" parent="."]
+amount = 24
 process_material = SubResource("ParticleProcessMaterial_nh4np")
 lifetime = 2.5
 explosiveness = 1.0

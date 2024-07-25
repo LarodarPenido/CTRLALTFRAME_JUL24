@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://12wxamserfhi"]
 
 [ext_resource type="Script" path="res://Scripts/wand.gd" id="1_3jpyo"]
-[ext_resource type="Texture2D" uid="uid://tuubcptnab42" path="res://Assets/Sprites/wand.png" id="2_jpm6c"]
+[ext_resource type="Texture2D" uid="uid://dr8c6caxrmag8" path="res://Assets/Sprites/Wand02.png" id="2_jein1"]
 
 [node name="Wand" type="Node2D"]
 script = ExtResource("1_3jpyo")
@@ -11,7 +11,7 @@ spell_cooldown = 0.1
 position = Vector2(2.45, 0)
 rotation = 0.590949
 scale = Vector2(0.03, 0.03)
-texture = ExtResource("2_jpm6c")
+texture = ExtResource("2_jein1")
 offset = Vector2(-90.4391, -136.737)
 
 [node name="CooldownTimer" type="Timer" parent="."]

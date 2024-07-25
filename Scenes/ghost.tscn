@@ -27,8 +27,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="CharacterBody2D"]
+[node name="Node2D" type="CharacterBody2D" node_paths=PackedStringArray("stunned", "chase", "wander_timer")]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_6i6hu")
+stunned = NodePath("Stunned")
+chase = NodePath("Chase")
+wander_timer = NodePath("Wander")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wffmb")
@@ -38,4 +43,16 @@ sprite_frames = SubResource("SpriteFrames_hht7u")
 autoplay = "default"
 frame_progress = 0.99951
 
-[node name="Estalecido" type="Timer" parent="."]
+[node name="Stunned" type="Timer" parent="."]
+
+[node name="Chase" type="Timer" parent="."]
+
+[node name="Wander" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Wander" to="." method="_on_wander_timeout"]

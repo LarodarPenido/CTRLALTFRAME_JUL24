@@ -1,12 +1,16 @@
 extends CharacterBody2D
 
+
+@onready var game: Node2D
+
+
 @export var spell_lifetime = 3.0
 @export var spell_speed = 300.0
 @onready var spell_direction: Vector2
 @onready var life_timer = $LifeTimer
 
 signal spell_hit
-
+signal enemy_hit
 
 var direction: Vector2
 var current_speed: Vector2
@@ -15,8 +19,6 @@ const DESTRUCTIBLE = 1
 var collectibles_manager: Node2D
 
 const COLLECTABLE = preload("res://Scenes/Collectable.tscn")
-
-
 ## VFX
 const BREAK_PARTICLES = preload("res://Scenes/break_particles.tscn")
 
@@ -25,13 +27,8 @@ const BREAK_PARTICLES = preload("res://Scenes/break_particles.tscn")
 
 
 
-
-
-
-
-
 func _ready():
-
+	game = get_parent().get_node("Game")
 	life_timer.start(spell_lifetime)
 	current_speed = direction * spell_speed
 	collectibles_manager = get_tree().get_first_node_in_group("CollectiblesManager") 
@@ -40,15 +37,21 @@ func _physics_process(delta):
 
 	velocity = current_speed * delta
 	move_and_collide(velocity)
-		
-	
+
 	var collision_info = move_and_collide(velocity)
 	
 	if collision_info:
 		spell_hit.emit()
-		var _collider = collision_info.get_collider()
+		#var _collider = collision_info.get_collider()
 		#print("Collision with:", _collider)
 		var collider = collision_info.get_collider()
+		
+		if collider is Enemy:
+			
+			emit_signal("enemy_hit", collider)
+			queue_free()
+			#enemy_hit.emit()
+		
 		if collider is TileMap:
 			var collision_position = collision_info.get_position()
 			#print("Collision position:", collision_position)
@@ -66,6 +69,7 @@ func _physics_process(delta):
 						#var collectibles_manager = get_parent().get_node("CollectiblesManager")
 						collectibles_manager.handle_tile_destruction(map_position, collision_position)
 						queue_free()
+						game.screen_shake(.001, .01)
 					else:
 						atlas_position.x -= 1
 						collider.set_cell(0, map_position, tile_type_id, atlas_position)

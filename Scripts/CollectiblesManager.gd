@@ -31,16 +31,16 @@ var required_items = {
 
 ## SFX tiles sounds
 
-
-
-
- 
-
+## Signals connection
+var player: Node
+var game: Node
 
 func _ready():
 	count_total_destructible_tiles()
 	total_items = count_items()
 	remaining_items = count_items()
+	player = get_tree().get_first_node_in_group("player")
+	game = get_tree().get_first_node_in_group("game")
 
 func count_total_destructible_tiles():
 	total_destructible_tiles = 0
@@ -64,11 +64,7 @@ func count_items() -> int:
 		total_sum += amount
 	return total_sum
 
-
 func handle_tile_destruction(map_position, collision_position):
-	
-	
-	
 	var tilemap = get_parent().get_node("TileMap")
 	tilemap.erase_cell(0, map_position)
 	total_destructible_tiles -= 1
@@ -82,9 +78,6 @@ func handle_tile_destruction(map_position, collision_position):
 	if spawn_chance > spawn_roll:
 		#print("spawn can happen")
 		spawn_collectable(collision_position)
-	else:
-		pass
-		#print("spawn cant happen")
 	spawn_sparks(collision_position)
 
 
@@ -92,13 +85,12 @@ func spawn_collectable(_position):
 	var spawn_item = choose_item_to_spawn()
 	remaining_items = count_items()
 	if spawn_item != "":
-
 		var collectable = collectable_scene.instantiate()
 		collectable.global_position = _position
 		collectable.set_item_type(spawn_item)
 		get_tree().root.add_child(collectable)
-		
-		
+		collectable.connect_to_player(player)
+		collectable.connect_to_game(game)
 	else:
 		pass
 		#print("No item spawned at:", _position)

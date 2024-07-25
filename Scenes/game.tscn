@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfww2l1c746yp"]
+[gd_scene load_steps=11 format=3 uid="uid://dfww2l1c746yp"]
 
 [ext_resource type="PackedScene" uid="uid://dhdopxmmw8rsw" path="res://Scenes/level_test.tscn" id="1_cchay"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_dgi2b"]
@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://by2cd46gi657m" path="res://Assets/Sounds/Excavation/RockHit_SFX Edit 1 Export 1 Track 1 Render 0.mp3" id="4_dpany"]
 [ext_resource type="AudioStream" uid="uid://cbjchwsjggnd1" path="res://Assets/Sounds/Excavation/RockHit_SFX Edit 1 Export 1 Track 2 Render 0.mp3" id="5_e1bgp"]
 [ext_resource type="AudioStream" uid="uid://cvafaq50rdxl6" path="res://Assets/Sounds/Excavation/RockHit_SFX Edit 1 Export 1 Track 3 Render 0.mp3" id="6_1e8ts"]
+[ext_resource type="Script" path="res://addons/post_processing/node/post_process.gd" id="7_c55rf"]
+[ext_resource type="Script" path="res://addons/post_processing/resource/post_processing_configuration.gd" id="8_04cba"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xvtfe"]
 random_pitch = 1.46
@@ -18,12 +20,89 @@ stream_1/weight = 1.0
 stream_2/stream = ExtResource("6_1e8ts")
 stream_2/weight = 1.0
 
-[node name="Game" type="Node2D"]
+[sub_resource type="Resource" id="Resource_28o31"]
+script = ExtResource("8_04cba")
+reload = false
+ASCII = false
+ASCIISize = Vector2(4, 9)
+ChromaticAberration = false
+StrenghtCA = 1.0
+Blur = false
+L_O_D = 1.0
+FishEye = false
+FishEyeAspect = 1.0
+FishEyeDistortion = 1.0
+FishEyeRadius = 1.0
+FishEyeAlpha = 1.0
+FishEyeCrop = 1.0
+FishEyeCropColor = Color(0, 0, 0, 1)
+Vignette = true
+VignetteIntensity = 0.2
+VignetteOpacity = 0.194
+VignetteR_G_B = Color(0.249643, 0.408144, 0.796947, 1)
+Glitch = false
+GlitchRange = 0.05
+GlitchNoiseQuality = 250.0
+GlitchIntenity = 0.0088
+GlitchOffset = 0.03
+GlitchColorOffset = 1.3
+Outline = false
+OutlineColor = Color(0, 0, 0, 1)
+OutlineThreshold = 0.0
+OutlineBlend = 0.01
+Grain = false
+GrainPower = 75
+CircularWaves = false
+CircularWavesAmplitude = 2.0
+CircularWavesFrequency = 12.69
+CircularWavesRippleRate = 9.2
+SpeedLines = false
+SpeedLinesColor = Color(1, 1, 1, 1)
+SpeedLinesCount = 2
+SpeedLineDensity = 0.072
+SpeedLineSpeed = 20
+ColorCorrection = false
+ColorCorrectionTint = Color(0, 0, 0, 1)
+ColorCorrectionBrightness = 0.0
+ColorCorrectionSaturation = 0.0
+Palette = false
+Pixelate = false
+PixelatePixelSize = 8
+CRT = false
+overlay = false
+scanlines_opacity = 0.4
+scanlines_width = 0.25
+grille_opacity = 0.3
+pixelate = true
+roll_speed = 8.0
+roll_size = 15.0
+roll_variation = 1.8
+distort_intensity = 0.05
+noise_opacity = 0.4
+noise_speed = 5.0
+static_noise_intensity = 0.06
+aberration = 0.03
+brightness = 1.4
+discolor = true
+warp_amount = 1.0
+clip_warp = false
+vignette_intensity = 0.4
+vignette_opacity = 0.5
+AnalogMonitor = false
+AnalogMonitorResolution = Vector2(256, 256)
+ScreenShake = false
+ScreenShakePower = 0.1
+
+[node name="Game" type="Node2D" groups=["game"]]
 script = ExtResource("1_dgi2b")
 
 [node name="Level01" parent="." instance=ExtResource("1_cchay")]
 
-[node name="Node2D" parent="Level01/Node2D" index="2" node_paths=PackedStringArray("audio_manager")]
+[node name="Node2D" parent="Level01" index="4" node_paths=PackedStringArray("game")]
+game = NodePath("../..")
+
+[node name="Node2D" parent="Level01/Node2D" index="3" node_paths=PackedStringArray("game", "audio_manager")]
+game = NodePath("../../..")
 audio_manager = NodePath("../../../AudioManager")
 
 [node name="AudioManager" type="Node2D" parent="."]
@@ -67,6 +146,125 @@ pitch_scale = 1.08
 [node name="GhostStun" type="AudioStreamPlayer2D" parent="AudioManager/Enemies"]
 
 [node name="GhostBanished" type="AudioStreamPlayer2D" parent="AudioManager/Enemies"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PostProcess" type="CanvasLayer" parent="CanvasLayer"]
+script = ExtResource("7_c55rf")
+configuration = SubResource("Resource_28o31")
+
+[node name="LevelInterface" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="HPBar" type="Control" parent="CanvasLayer/LevelInterface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WandXP" type="Control" parent="CanvasLayer/LevelInterface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WandLevel" type="Control" parent="CanvasLayer/LevelInterface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FuelBar" type="Control" parent="CanvasLayer/LevelInterface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/LevelInterface/FuelBar"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="StarIcon" type="Control" parent="CanvasLayer/LevelInterface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Star" type="TextureRect" parent="CanvasLayer/LevelInterface/StarIcon"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StarOutline" type="TextureRect" parent="CanvasLayer/LevelInterface/StarIcon"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BookIcon" type="Control" parent="CanvasLayer/LevelInterface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Book" type="TextureRect" parent="CanvasLayer/LevelInterface/BookIcon"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BookOutline" type="TextureRect" parent="CanvasLayer/LevelInterface/BookIcon"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="CanvasLayer/LevelInterface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartGame" type="Button" parent="CanvasLayer/MainMenu"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Quit" type="Button" parent="CanvasLayer/MainMenu"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Story" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Briefing" type="Control" parent="CanvasLayer/Story"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Debriefing" type="Control" parent="CanvasLayer/Story"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ending" type="Control" parent="CanvasLayer/Story"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QuakeTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="QuakeTimer" to="." method="_on_quake_timer_timeout"]
 
 [editable path="Level01"]
 [editable path="Level01/Node2D"]

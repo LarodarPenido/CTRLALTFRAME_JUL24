@@ -21,7 +21,7 @@ PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_came
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gaea/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/post_processing/plugin.cfg")
+enabled=PackedStringArray("res://addons/gaea/plugin.cfg", "res://addons/maaacks_options_menus/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/post_processing/plugin.cfg", "res://addons/segmented_bar/plugin.cfg")
 
 [input]
 
@@ -61,6 +61,11 @@ fire={
 2d_physics/layer_2="PlayerAmmo"
 2d_physics/layer_3="Terrain"
 2d_physics/layer_4="Enemies"
+
+[maaacks_options_menus]
+
+disable_plugin_dialogues=true
+copy_path="res://Scenes"
 
 [rendering]
 
