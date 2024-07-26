@@ -1,9 +1,24 @@
 extends Node2D
 
-var wand_level = 1
-
 @onready var post_process = $CanvasLayer/PostProcess
 @onready var quake_timer = $QuakeTimer
+
+
+
+## Progression
+var wand_level = 1
+
+
+## Win Conditions
+var player_embarked = false
+var fuel_level = 0
+var star_found = false
+var book_found = false
+
+
+var fuel_full = false
+
+
 
 ## VFX
 func screen_shake(intensity: float, duration: float) -> void:
@@ -31,9 +46,14 @@ func _on_item_picked(item_type: String):
 			_collect_book()
 			
 func _update_fuel_bar():
-	print("fuel collected")
+	fuel_level += 1
+	prints("fuel collected", fuel_level)
+	if fuel_level == 10:
+		fuel_full = true
+		prints("tanque cheio")
 
 func _collect_red_mineral():
+	wand_level += 1
 	print("red min collected")
 	
 func _collect_star_fragment():

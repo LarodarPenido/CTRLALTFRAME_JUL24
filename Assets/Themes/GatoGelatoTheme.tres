@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c78hinwaisvpk"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://c78hinwaisvpk"]
 
-[ext_resource type="FontFile" uid="uid://cu4nk15e73q80" path="res://Assets/Fonts/Gluten-ExtraBold.ttf" id="1_oq2re"]
+[ext_resource type="FontFile" uid="uid://bhxrx8yvvtv6l" path="res://Assets/Fonts/Gluten-ExtraBold.ttf" id="1_oq2re"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7iicp"]
 bg_color = Color(0.6906, 0.3672, 0.72, 1)
@@ -61,6 +61,12 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxhp3"]
+bg_color = Color(0.725703, 0.563596, 0.426934, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2fn0"]
+bg_color = Color(0.425369, 0.657817, 0.56309, 1)
+
 [resource]
 default_font = ExtResource("1_oq2re")
 default_font_size = 40
@@ -72,3 +78,5 @@ Button/styles/pressed = SubResource("StyleBoxFlat_4wc0h")
 HSeparator/constants/separation = 40
 HSeparator/styles/separator = SubResource("StyleBoxFlat_aa3ao")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_meu2b")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_mxhp3")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_d2fn0")

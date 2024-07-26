@@ -5,11 +5,7 @@ extends Node2D
 ## player embarked
 ## fuel enough
 ## collectibles left display
-## 
-var player_embarked = false
-var fuel_level = 0
-var star_found = false
-var book_found = false
+
 
 
 

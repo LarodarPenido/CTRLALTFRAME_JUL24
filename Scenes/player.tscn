@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cihlctj3okwe2"]
+[gd_scene load_steps=13 format=3 uid="uid://cihlctj3okwe2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_yxmrb"]
 [ext_resource type="Texture2D" uid="uid://fwtwkfd2lkuk" path="res://Assets/Sprites/Gatolomeu.png" id="2_acw2h"]
+[ext_resource type="Texture2D" uid="uid://hf8coewesiwd" path="res://Assets/Sprites/VFX/catnip_aura.png" id="2_lrcv2"]
+[ext_resource type="Texture2D" uid="uid://dqxw35enuetg0" path="res://Assets/Sprites/VFX/Glow (1).png" id="2_u5tsk"]
 [ext_resource type="PackedScene" uid="uid://12wxamserfhi" path="res://Scenes/wand.tscn" id="3_sc40d"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nbqoj"]
@@ -16,6 +18,8 @@ initial_velocity_min = 48.39
 initial_velocity_max = 64.52
 gravity = Vector3(0, 5, 0)
 linear_accel_max = 16.13
+scale_min = 0.02
+scale_max = 0.05
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lh7gm"]
 atlas = ExtResource("2_acw2h")
@@ -62,10 +66,27 @@ collision_mask = 12
 script = ExtResource("1_yxmrb")
 acceleration = 2
 
+[node name="CatnipAura" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -8)
+scale = Vector2(0.0784184, 0.0915741)
+texture = ExtResource("2_lrcv2")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+z_index = -2
+color = Color(1, 0.964706, 0.87451, 1)
+energy = 0.2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.792157)
+texture = ExtResource("2_u5tsk")
+
 [node name="FlightPower" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.780392)
 process_material = SubResource("ParticleProcessMaterial_nbqoj")
+texture = ExtResource("2_u5tsk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
 position = Vector2(0, 4.76837e-07)
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_vasw0")
@@ -88,5 +109,10 @@ rotation = 0.872665
 position = Vector2(21.535, -0.165)
 
 [node name="CatnipPower" type="Timer" parent="."]
+
+[node name="InvincibleTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CatnipPower" to="." method="_on_catnip_power_timeout"]
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
 
 [editable path="Node2D"]

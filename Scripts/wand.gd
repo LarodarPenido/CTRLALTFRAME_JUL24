@@ -4,9 +4,13 @@ extends Node2D
 
 @onready var cooldown_timer = $CooldownTimer
 @onready var can_shoot = true
-@export var spell_cooldown = .5
+@export var spell_cooldown = .3
+@onready var current_spell_cooldown: float
 @onready var wand_point = $WandPoint
 @onready var wand_sprite = $WandSprite
+
+@onready var player: CharacterBody2D
+
 
 const SPELL = preload("res://Scenes/spell.tscn")
 
@@ -16,9 +20,15 @@ const SPELL = preload("res://Scenes/spell.tscn")
 
 ##VFX
 func _ready(): 
-	pass
+	player = get_tree().get_first_node_in_group("player")
+	current_spell_cooldown = spell_cooldown
 
 func _process(delta):
+	if !player.catnip_power:
+		current_spell_cooldown = spell_cooldown - (game.wand_level * .05)
+	else:
+		current_spell_cooldown = (spell_cooldown - (game.wand_level * .02)) / 3
+	
 	if Input.is_action_pressed("fire"):
 		cast_spell()
 
@@ -53,7 +63,9 @@ func cast_spell():
 		get_tree().root.add_child(_spell)
 		#spell_sound.play()
 		can_shoot = false
-		cooldown_timer.start(spell_cooldown)
+		
+		#update_cooldown() ## TODO ugrade system
+		cooldown_timer.start(current_spell_cooldown)
 		
 
 
@@ -63,3 +75,11 @@ func _on_cooldown_timer_timeout():
 
 func _on_enemy_hit(enemy):
 	enemy._on_spell_hit()
+
+#func update_cooldown():
+	#if player.catnip_power == true:
+		#spell_cooldown = spell_cooldown / 2
+#
+	#else:
+		#spell_cooldown = spell_cooldown
+

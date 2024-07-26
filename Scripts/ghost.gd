@@ -91,7 +91,7 @@ func _process(delta):
 			damage_timer.start()
 			player.take_damage()
 		elif collider is Player and player.catnip_power == true:
-			States.BANISHED
+			queue_free() ##TODO create dying sequece
 
 func _physics_process(delta):
 	match state:
@@ -142,6 +142,8 @@ func _on_player_catnip_touch():
 	queue_free()
 
 func _on_spell_hit():
+	if player.catnip_power == true:
+		queue_free()
 	state = States.STUNNED
 	stunned_timer = stunned_duration * stun_time_multiplier
 

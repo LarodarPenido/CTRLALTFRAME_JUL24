@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cm6eor2ri6gta"]
 
 [ext_resource type="Script" path="res://Scripts/spell.gd" id="1_jvycv"]
-[ext_resource type="Texture2D" uid="uid://bai2ag2u42500" path="res://icon.svg" id="1_uqrf7"]
+[ext_resource type="Texture2D" uid="uid://dqxw35enuetg0" path="res://Assets/Sprites/VFX/Glow (1).png" id="2_dukyt"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6s4n5"]
 particle_flag_disable_z = true
@@ -11,6 +11,8 @@ initial_velocity_max = -20.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = 5.41
 linear_accel_max = 17.57
+scale_min = 0.01
+scale_max = 0.03
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s0qft"]
 radius = 8.0
@@ -20,17 +22,21 @@ collision_layer = 2
 collision_mask = 12
 platform_on_leave = 2
 script = ExtResource("1_jvycv")
+spell_lifetime = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.372549, 0.678431, 0.678431, 1)
 scale = Vector2(0.075, 0.075)
-texture = ExtResource("1_uqrf7")
+texture = ExtResource("2_dukyt")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 64
+modulate = Color(0.374, 0.68, 0.68, 1)
+amount = 32
 process_material = SubResource("ParticleProcessMaterial_6s4n5")
+texture = ExtResource("2_dukyt")
 
 [node name="LifeTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 autostart = true
 

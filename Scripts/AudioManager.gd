@@ -30,5 +30,4 @@ func _ready():
 
 
 func _on_spell_hit():
-	#print("signal spell hit")
-	spell_hit.play()
+		spell_hit.play()

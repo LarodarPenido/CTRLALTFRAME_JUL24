@@ -53,5 +53,7 @@ func connect_to_game(game: Node):
 	if game.has_method("_on_item_picked"):
 		connect("item_picked", Callable(game, "_on_item_picked"))
 		
+
+		
 		
 		

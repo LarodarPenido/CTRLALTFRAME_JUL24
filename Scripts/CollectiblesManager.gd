@@ -23,13 +23,17 @@ var items_spawned = {
 
 var required_items = {
 	"ship_fuel": 10,
-	"catnip": 3,
-	"red_mineral": 5,
+	"catnip": 5,
+	"red_mineral": 2,
 	"star": 1,
 	"book": 1
 }
 
 ## SFX tiles sounds
+
+## TODO add rock crush sound
+@export var rock_break: AudioStreamPlayer2D
+
 
 ## Signals connection
 var player: Node
@@ -69,14 +73,13 @@ func handle_tile_destruction(map_position, collision_position):
 	tilemap.erase_cell(0, map_position)
 	total_destructible_tiles -= 1
 	count_total_destructible_tiles()
+	rock_break.play()
 	
 	var spawn_chance = calc_spawn_chance()
 	randomize()
 	var spawn_roll = randf()
-	#print("spawn roll: " + str(spawn_roll))
-	#print("spawn chance: " + str(spawn_chance))
+
 	if spawn_chance > spawn_roll:
-		#print("spawn can happen")
 		spawn_collectable(collision_position)
 	spawn_sparks(collision_position)
 
@@ -91,9 +94,7 @@ func spawn_collectable(_position):
 		get_tree().root.add_child(collectable)
 		collectable.connect_to_player(player)
 		collectable.connect_to_game(game)
-	else:
-		pass
-		#print("No item spawned at:", _position)
+
 
 func choose_item_to_spawn():
 	var keys = required_items.keys()
@@ -106,9 +107,8 @@ func choose_item_to_spawn():
 	required_items[random_key] -= 1
 	if required_items[random_key] <= 0:
 		required_items.erase(random_key)
-	print(random_key)
+
 	return random_key
-	
 	
 func calc_spawn_chance() -> float:
 	if total_destructible_tiles <= 0:

@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 
 @export var spell_lifetime = 3.0
-@export var spell_speed = 300.0
+@export var spell_speed = 200.0
 @onready var spell_direction: Vector2
 @onready var life_timer = $LifeTimer
 
@@ -47,12 +47,11 @@ func _physics_process(delta):
 		var collider = collision_info.get_collider()
 		
 		if collider is Enemy:
-			
 			emit_signal("enemy_hit", collider)
 			queue_free()
-			#enemy_hit.emit()
-		
+
 		if collider is TileMap:
+			#print("hit a tile")
 			var collision_position = collision_info.get_position()
 			#print("Collision position:", collision_position)
 			#var map_position = collider.local_to_map(collision_position)
@@ -61,7 +60,6 @@ func _physics_process(delta):
 			var tile_type_id = collider.get_cell_source_id(0, map_position)
 			#print("Tile type ID:", tile_type_id)
 			if tile_type_id == DESTRUCTIBLE:
-				
 				var atlas_position = collider.get_cell_atlas_coords(0, map_position)
 				#print("Atlas position:", atlas_position)
 				if atlas_position.y == 0: ##Identify the destructible
@@ -73,10 +71,7 @@ func _physics_process(delta):
 					else:
 						atlas_position.x -= 1
 						collider.set_cell(0, map_position, tile_type_id, atlas_position)
-						
-
-				queue_free()
-
+			queue_free()
 
 func _on_life_timer_timeout():
 	queue_free()
