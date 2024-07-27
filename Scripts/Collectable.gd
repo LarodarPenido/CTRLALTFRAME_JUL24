@@ -18,9 +18,12 @@ var current_item_type: String
 var can_play = true
 
 var game: Node2D
+var level_interface: Control
 
 func _ready():
 	game = get_tree().get_first_node_in_group("game")
+	#level_interface = get_tree().get_first_node_in_group("levelui")
+	#connect_to_level_interface()
 
 func _process(delta):
 	pass
@@ -53,7 +56,9 @@ func connect_to_game(game: Node):
 	if game.has_method("_on_item_picked"):
 		connect("item_picked", Callable(game, "_on_item_picked"))
 		
-
+#func connect_to_level_interface():
+	#if level_interface.has_method("update_item_info"):
+		#connect("item_picked", Callable(level_interface, "update_item_info"))
 		
 		
 		

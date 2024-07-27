@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=3 uid="uid://b0domlpygt3gt"]
+
+[ext_resource type="Script" path="res://Scripts/ship.gd" id="1_4yytn"]
+[ext_resource type="Texture2D" uid="uid://chvuutg2jbnbj" path="res://Assets/Sprites/Ship/Nave 4.png" id="1_ia6gq"]
+[ext_resource type="Texture2D" uid="uid://bqim7s5xnpceb" path="res://Assets/Sprites/Ship/Nave 2.png" id="2_30qg0"]
+[ext_resource type="Texture2D" uid="uid://bs0vq7hmui7wo" path="res://Assets/Sprites/Ship/Nave 3.png" id="3_x2cok"]
+[ext_resource type="Texture2D" uid="uid://ddo8p2hyepmhe" path="res://Assets/Sprites/Ship/Nave 1.png" id="4_55ed1"]
+[ext_resource type="Texture2D" uid="uid://djybb0kfsj20t" path="res://Assets/Sprites/Ship/IMG_0276.PNG" id="5_skn4n"]
+[ext_resource type="Texture2D" uid="uid://bj18qx0bvjiai" path="res://Assets/Sprites/Ship/IMG_0275.PNG" id="6_svbg2"]
+[ext_resource type="Texture2D" uid="uid://cuirwvjl5sens" path="res://Assets/Sprites/Ship/IMG_0274.PNG" id="7_xi8uk"]
+[ext_resource type="Texture2D" uid="uid://dogmbajsj3aa2" path="res://Assets/Sprites/Ship/IMG_0273.PNG" id="8_k21hj"]
+[ext_resource type="Texture2D" uid="uid://dk8id7f6cykwv" path="res://Assets/Sprites/Ship/IMG_0262.PNG" id="9_ufgib"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_641sd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_skn4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_svbg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xi8uk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k21hj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ufgib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k21hj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xi8uk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_svbg2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 50.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8h8c"]
+size = Vector2(1936, 2128)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dbo6d"]
+polygon = PackedVector2Array(488, -72, 392, 16, 296, 80, 168, 120, 0, 160, -176, 120, -304, 72, -408, 8, -488, -48, -496, 64, -456, 184, -360, 336, -256, 416, -232, 512, -120, 560, 120, 560, 264, 512, 264, 408, 352, 352, 472, 176, 504, 40)
+
+[node name="Ship" type="Node2D"]
+script = ExtResource("1_4yytn")
+
+[node name="EmptyShip" type="Sprite2D" parent="."]
+texture = ExtResource("1_ia6gq")
+
+[node name="EmptyShipLanded" type="Sprite2D" parent="."]
+texture = ExtResource("2_30qg0")
+
+[node name="EmbarkedShip" type="Sprite2D" parent="."]
+texture = ExtResource("3_x2cok")
+
+[node name="EmbarkedShipLanded" type="Sprite2D" parent="."]
+texture = ExtResource("4_55ed1")
+
+[node name="ShipFlying" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 224)
+sprite_frames = SubResource("SpriteFrames_641sd")
+frame_progress = 0.244537
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -176)
+shape = SubResource("RectangleShape2D_a8h8c")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_dbo6d")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -46,7 +46,15 @@ var can_damage = true
 @onready var damage_timer = $DamageTimer
 
 
+## sfx
+
+## use group to find audio manager
+var audio_manager: Node2D
+
+
 func _ready():
+	
+	audio_manager = get_tree().get_first_node_in_group("audiomanager")
 	
 	wander_time = randf_range(1.0, 3.0)  # Set an initial timer value
 	
@@ -65,14 +73,17 @@ func _ready():
 func _process(delta):
 	match state:
 		States.WANDER:
+			audio_manager.play_sleep()
 			animated_sprite_2d.self_modulate.a = 1
 			collision_shape_2d.disabled = false
 			_wander(delta)
 		States.CHASE:
+			audio_manager.play_haunt()
 			animated_sprite_2d.self_modulate.a = 1
 			collision_shape_2d.disabled = false
 			_chase(delta)
 		States.STUNNED:
+			audio_manager.play_stun()
 			_stunned(delta)
 			collision_shape_2d.disabled = true
 			animated_sprite_2d.self_modulate.a = 0.2
@@ -81,7 +92,7 @@ func _process(delta):
 			collision_shape_2d.disabled = false
 			_follow(delta)
 		States.BANISHED:
-			print("ghost exorcised")
+			audio_manager.play_banished()
 
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)

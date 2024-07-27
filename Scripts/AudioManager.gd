@@ -1,7 +1,5 @@
 extends Node2D
 
-
-
 @onready var rock_hit = $RockSounds/RockHit
 @onready var rock_break = $RockSounds/RockBreak
 
@@ -31,3 +29,27 @@ func _ready():
 
 func _on_spell_hit():
 		spell_hit.play()
+
+
+func play_rock_break():
+	rock_break.play()
+
+func play_haunt():
+	ghost_haunt.play()
+func play_banished():
+	ghost_banished.play()
+func play_stun():
+	ghost_stun.play()
+func play_sleep():
+	ghost_sleep.play()
+
+func play_player_hit():
+	player_hurt.play()
+func play_player_catnip():
+	player_catnip.play()
+func play_player_die():
+	player_die.play()
+func play_player_float():
+	player_float.play()
+func play_player_fire():
+	player_fire.play()

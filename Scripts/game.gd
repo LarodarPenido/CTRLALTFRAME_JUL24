@@ -19,6 +19,25 @@ var book_found = false
 var fuel_full = false
 
 
+## Cutscenes
+
+
+## Levels
+const LEVEL_01 = preload("res://Scenes/Level01.tscn")
+
+## UI toggles
+@onready var story = $CanvasLayer/Story
+@onready var main_menu = $CanvasLayer/MainMenu
+@onready var level_interface = $CanvasLayer/LevelInterface
+
+
+func _ready():
+	story.hide()
+	level_interface.hide()
+	
+func _process(delta):
+	pass
+	## TODO if input esc - go to menu
 
 ## VFX
 func screen_shake(intensity: float, duration: float) -> void:
@@ -32,6 +51,8 @@ func shake_reset():
 
 func _on_quake_timer_timeout():
 	shake_reset()
+
+## Item controls
 
 func _on_item_picked(item_type: String):
 
@@ -57,8 +78,25 @@ func _collect_red_mineral():
 	print("red min collected")
 	
 func _collect_star_fragment():
-	print("star gotten")
+	star_found = true
 
 func _collect_book():
-	print(" got the book")
+	book_found = true
 	
+func reset_finds():
+	star_found = false
+	book_found = false
+	fuel_level = 0
+
+func _on_start_game_pressed():
+	main_menu.hide()
+	get_tree().change_scene_to_file("res://Scenes/Level01.tscn")
+	
+func go_to_level_02():
+	pass
+
+func go_to_level_03():
+	pass
+
+func _on_quit_pressed():
+	get_tree().quit()

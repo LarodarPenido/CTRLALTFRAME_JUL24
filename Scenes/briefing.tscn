@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3888v08vhh6j"]
+
+[ext_resource type="Script" path="res://Scripts/Node2D.gd" id="1_m5i7h"]
+
+[node name="Briefing" type="Node2D"]
+script = ExtResource("1_m5i7h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Avancar" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Avançar"
+
+[connection signal="pressed" from="Avancar" to="." method="_on_avancar_pressed"]

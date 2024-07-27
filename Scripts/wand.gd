@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var game: Node2D
+@onready var game: Node2D
 
 @onready var cooldown_timer = $CooldownTimer
 @onready var can_shoot = true
@@ -16,18 +16,21 @@ const SPELL = preload("res://Scenes/spell.tscn")
 
 ##SFX
 #@onready var spell_sound = $AudioStreamPlayer2D
-@export var audio_manager: Node2D
+@onready var audio_manager: Node2D
 
 ##VFX
 func _ready(): 
 	player = get_tree().get_first_node_in_group("player")
+	game = get_tree().get_first_node_in_group("game")
+	audio_manager = get_tree().get_first_node_in_group("audiomanager")
 	current_spell_cooldown = spell_cooldown
 
 func _process(delta):
-	if !player.catnip_power:
-		current_spell_cooldown = spell_cooldown - (game.wand_level * .05)
-	else:
-		current_spell_cooldown = (spell_cooldown - (game.wand_level * .02)) / 3
+	if game:
+		if !player.catnip_power:
+			current_spell_cooldown = spell_cooldown - (game.wand_level * .05)
+		else:
+			current_spell_cooldown = (spell_cooldown - (game.wand_level * .02)) / 3
 	
 	if Input.is_action_pressed("fire"):
 		cast_spell()

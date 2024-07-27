@@ -38,6 +38,7 @@ var required_items = {
 ## Signals connection
 var player: Node
 var game: Node
+var audio_manager: Node
 
 func _ready():
 	count_total_destructible_tiles()
@@ -45,6 +46,7 @@ func _ready():
 	remaining_items = count_items()
 	player = get_tree().get_first_node_in_group("player")
 	game = get_tree().get_first_node_in_group("game")
+	audio_manager = get_tree().get_first_node_in_group("audiomanager")
 
 func count_total_destructible_tiles():
 	total_destructible_tiles = 0
@@ -73,9 +75,9 @@ func handle_tile_destruction(map_position, collision_position):
 	tilemap.erase_cell(0, map_position)
 	total_destructible_tiles -= 1
 	count_total_destructible_tiles()
-	rock_break.play()
+	audio_manager.play_rock_break()
 	
-	var spawn_chance = calc_spawn_chance()
+	spawn_chance = calc_spawn_chance()
 	randomize()
 	var spawn_roll = randf()
 
@@ -113,7 +115,7 @@ func choose_item_to_spawn():
 func calc_spawn_chance() -> float:
 	if total_destructible_tiles <= 0:
 		return 0.0
-	var spawn_chance = float(remaining_items) / float(total_destructible_tiles)
+	spawn_chance = float(remaining_items) / float(total_destructible_tiles)
 	if spawn_chance > 1:
 		spawn_chance = 1
 	return spawn_chance

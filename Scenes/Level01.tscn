@@ -1,13 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhdopxmmw8rsw"]
+[gd_scene load_steps=28 format=3 uid="uid://dhdopxmmw8rsw"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_o1yh7"]
 [ext_resource type="TileSet" uid="uid://cota570suqyym" path="res://Scenes/TilesPlanet01.tres" id="2_5l6gf"]
 [ext_resource type="Texture2D" uid="uid://cb4ey8sxpr7tq" path="res://Assets/Sprites/FinalTiles/planet1/Céu - planeta 1.jpg" id="2_74vd1"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator.gd" id="2_gu4rp"]
+[ext_resource type="PackedScene" uid="uid://b0domlpygt3gt" path="res://Scenes/ship.tscn" id="2_tvm5h"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/fill.gd" id="3_gp6rl"]
 [ext_resource type="Texture2D" uid="uid://c7g88e7jin0nw" path="res://Assets/Sprites/FinalTiles/planet1/Background planet 1.jpg" id="3_yy8vt"]
 [ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="4_5q76f"]
-[ext_resource type="Texture2D" uid="uid://ce5lq06agc3g7" path="res://Assets/Sprites/Nave 2.png" id="4_sptl8"]
+[ext_resource type="Shader" path="res://Scenes/fog.gdshader" id="4_yhkby"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator_settings.gd" id="5_bxa18"]
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="6_vr430"]
 [ext_resource type="PackedScene" uid="uid://cihlctj3okwe2" path="res://Scenes/player.tscn" id="8_8m8fb"]
@@ -16,6 +17,21 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_ibmf3"]
 [ext_resource type="PackedScene" uid="uid://cgceftjc8dnac" path="res://Scenes/ghost.tscn" id="13_we6ts"]
 [ext_resource type="PackedScene" uid="uid://cb7qsha3gosur" path="res://collectibles_manager.tscn" id="14_dipkh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e1353"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_73wm1"]
+seamless = true
+noise = SubResource("FastNoiseLite_e1353")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_umstq"]
+shader = ExtResource("4_yhkby")
+shader_parameter/density = 1.0
+shader_parameter/speed = Vector2(0.02, 0.01)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_73wm1")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ftq5k"]
+polygon = PackedVector2Array(-144, -72, -1112, -72, -1112, -40, -144, -40)
 
 [sub_resource type="Resource" id="Resource_j2tlu"]
 script = ExtResource("4_5q76f")
@@ -75,10 +91,34 @@ duration = 1.0
 transition = 0
 ease = 2
 
-[node name="LevelTest" type="Node2D"]
+[node name="Level01" type="Node2D"]
 script = ExtResource("1_o1yh7")
 
+[node name="Ship" parent="." instance=ExtResource("2_tvm5h")]
+position = Vector2(-232, -96)
+scale = Vector2(0.04, 0.04)
+
 [node name="Visual" type="Node2D" parent="."]
+
+[node name="Fog" type="Sprite2D" parent="Visual"]
+position = Vector2(-8, -444)
+
+[node name="SkyParallax" type="ParallaxBackground" parent="Visual"]
+offset = Vector2(0, 187.305)
+transform = Transform2D(1, 0, 0, 1, 0, 187.305)
+follow_viewport_enabled = true
+scroll_base_scale = Vector2(0.2, 0.2)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Visual/SkyParallax"]
+position = Vector2(0, 1.52)
+
+[node name="Sky" type="Sprite2D" parent="Visual/SkyParallax/ParallaxLayer"]
+position = Vector2(-62.735, -289.96)
+scale = Vector2(0.812621, 0.812621)
+texture = ExtResource("2_74vd1")
+
+[node name="FogParallax" type="ParallaxBackground" parent="Visual"]
+layer = 1
 
 [node name="BG01" type="Sprite2D" parent="Visual"]
 position = Vector2(-8, 720)
@@ -95,30 +135,41 @@ position = Vector2(-1512, 720)
 scale = Vector2(1.30985, 1.30985)
 texture = ExtResource("3_yy8vt")
 
-[node name="Fog" type="Sprite2D" parent="Visual"]
-position = Vector2(-8, -444)
-
-[node name="Ship" type="Sprite2D" parent="Visual"]
-position = Vector2(-232, -120)
-scale = Vector2(0.0698564, 0.0698564)
-texture = ExtResource("4_sptl8")
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Visual"]
-offset = Vector2(0, 187.305)
-transform = Transform2D(1, 0, 0, 1, 0, 187.305)
-follow_viewport_enabled = true
-scroll_base_scale = Vector2(0.2, 0.2)
+layer = 10
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Visual/ParallaxBackground"]
-position = Vector2(0, 1.52)
 
-[node name="Sky" type="Sprite2D" parent="Visual/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-62.735, -289.96)
-scale = Vector2(0.812621, 0.812621)
-texture = ExtResource("2_74vd1")
+[node name="TextureRect" type="TextureRect" parent="Visual/ParallaxBackground/ParallaxLayer"]
+material = SubResource("ShaderMaterial_umstq")
+custom_minimum_size = Vector2(1500, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -750.0
+offset_top = -500.0
+offset_right = 750.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
 
-[node name="ParallaxBackground2" type="ParallaxBackground" parent="Visual"]
-layer = 1
+[node name="Node2D" type="Node2D" parent="Visual"]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Visual/Node2D"]
+skew = -0.497419
+color = Color(0.77, 0.679782, 0.4851, 1)
+energy = 0.2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Visual/Node2D"]
+position = Vector2(-7.62939e-06, 0)
+occluder = SubResource("OccluderPolygon2D_ftq5k")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Visual/Node2D"]
+position = Vector2(1288, -3.05176e-05)
+occluder = SubResource("OccluderPolygon2D_ftq5k")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_5l6gf")
@@ -141,10 +192,10 @@ script = ExtResource("6_vr430")
 tile_map = NodePath("../TileMap")
 generator = NodePath("../WalkerGenerator")
 
-[node name="Node2D" parent="." instance=ExtResource("8_8m8fb")]
+[node name="Player" parent="." instance=ExtResource("8_8m8fb")]
 position = Vector2(0, -168)
 
-[node name="Cam_Target_Player" type="Marker2D" parent="Node2D"]
+[node name="Cam_Target_Player" type="Marker2D" parent="Player"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -168)
@@ -157,18 +208,20 @@ script = ExtResource("9_heqv5")
 script = ExtResource("10_sfkad")
 priority = 1
 follow_mode = 2
-follow_target = NodePath("../../Node2D/Cam_Target_Player")
+follow_target = NodePath("../../Player/Cam_Target_Player")
 zoom = Vector2(2, 2)
 tween_resource = SubResource("Resource_p31rw")
 dead_zone_width = 0.112
 dead_zone_height = 0.125
+draw_limits = true
 
 [node name="Ship_Pcam" type="Node2D" parent="Camera2D" node_paths=PackedStringArray("follow_targets")]
 position = Vector2(0, 84)
 script = ExtResource("10_sfkad")
 follow_mode = 3
-follow_targets = [NodePath("../../Node2D/Cam_Target_Player"), NodePath("../../Cam_Target_Ship")]
+follow_targets = [NodePath("../../Player/Cam_Target_Player"), NodePath("../../Cam_Target_Ship")]
 tween_resource = SubResource("Resource_eliit")
+draw_limits = true
 
 [node name="Cam_Target_Ship" type="Marker2D" parent="."]
 
@@ -222,5 +275,5 @@ wander_timer = NodePath("../Node2D3/Wander")
 
 [node name="Bounds" type="Node2D" parent="."]
 
-[editable path="Node2D"]
-[editable path="Node2D/Node2D"]
+[editable path="Player"]
+[editable path="Player/Node2D"]

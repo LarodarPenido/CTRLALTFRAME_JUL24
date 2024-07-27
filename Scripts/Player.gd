@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var game: Node2D
+@onready var game: Node2D
+
+var player_embarked = false
 
 # Catnip mode
-@export var catnip_power_duration = 5.0
+@export var catnip_power_duration = 7.0
 var catnip_power = false
 @onready var catnip_power_timer = $CatnipPower
 @onready var catnip_aura = $CatnipAura
@@ -20,19 +22,23 @@ var invincible = false
 @export var speed = 300
 @export var acceleration = 1
 var current_speed: Vector2 = Vector2.ZERO
-# acceleration system
-# inertia system
 
-## audio
 
-## vfx
+## VFX
 @export var post_process: Node
-
-
 @onready var player_sprite = $AnimatedSprite2D
-
-
 @onready var input_direction: Vector2
+
+## SFX
+
+@onready var audio_manager: Node2D
+
+func _ready():
+	game = get_tree().get_first_node_in_group("game")
+	audio_manager = get_tree().get_first_node_in_group("audiomanager")
+	
+	
+
 
 func connect_collectible(item):
 	item.connect("item_picked", Callable(self, "_on_item_picked"))
@@ -43,10 +49,11 @@ func _on_item_picked(item_type: String):
 			_activate_catnip_powerup()
 	
 func _activate_catnip_powerup():
+	# TODO play catnip sound
 	catnip_power = true
 	speed = 450
 	acceleration = 3
-	post_process.configuration.SpeedLines = true
+	
 	catnip_aura.show()
 	catnip_aura.self_modulate.a = catnip_power_timer.time_left
 	catnip_power_timer.start(catnip_power_duration)
@@ -107,6 +114,7 @@ func _on_catnip_power_timeout():
 	deactivate_catnip_powerup()
 
 func deactivate_catnip_powerup():
+
 	catnip_aura.hide()
 	catnip_power = false
 	speed = 300
