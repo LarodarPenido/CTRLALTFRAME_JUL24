@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dumcahow47eae"]
+
+[ext_resource type="Script" path="res://Scripts/LoadingScreen.gd" id="1_hujj1"]
+[ext_resource type="Texture2D" uid="uid://gq1lbwty3274" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-001.jpg" id="2_i5suy"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hujj1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_i5suy")

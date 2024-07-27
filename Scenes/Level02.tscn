@@ -1,22 +1,22 @@
-[gd_scene load_steps=28 format=3 uid="uid://dhdopxmmw8rsw"]
+[gd_scene load_steps=28 format=3 uid="uid://0aqy0b0yyvri"]
 
-[ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_o1yh7"]
-[ext_resource type="TileSet" uid="uid://cota570suqyym" path="res://Scenes/TilesPlanet01.tres" id="2_5l6gf"]
-[ext_resource type="Texture2D" uid="uid://cb4ey8sxpr7tq" path="res://Assets/Sprites/FinalTiles/planet1/Céu - planeta 1.jpg" id="2_74vd1"]
-[ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator.gd" id="2_gu4rp"]
-[ext_resource type="PackedScene" uid="uid://b0domlpygt3gt" path="res://Scenes/ship.tscn" id="2_tvm5h"]
-[ext_resource type="Script" path="res://addons/gaea/modifiers/2D/fill.gd" id="3_gp6rl"]
-[ext_resource type="Texture2D" uid="uid://c7g88e7jin0nw" path="res://Assets/Sprites/FinalTiles/planet1/Background planet 1.jpg" id="3_yy8vt"]
-[ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="4_5q76f"]
-[ext_resource type="Shader" path="res://Scenes/fog.gdshader" id="4_yhkby"]
-[ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator_settings.gd" id="5_bxa18"]
-[ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="6_vr430"]
-[ext_resource type="PackedScene" uid="uid://cihlctj3okwe2" path="res://Scenes/player.tscn" id="8_8m8fb"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_heqv5"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="10_sfkad"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_ibmf3"]
-[ext_resource type="PackedScene" uid="uid://cgceftjc8dnac" path="res://Scenes/ghost.tscn" id="13_we6ts"]
-[ext_resource type="PackedScene" uid="uid://cb7qsha3gosur" path="res://collectibles_manager.tscn" id="14_dipkh"]
+[ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_6aveb"]
+[ext_resource type="PackedScene" uid="uid://b0domlpygt3gt" path="res://Scenes/ship.tscn" id="2_qmugw"]
+[ext_resource type="Texture2D" uid="uid://cb4ey8sxpr7tq" path="res://Assets/Sprites/FinalTiles/planet1/Céu - planeta 1.jpg" id="3_cnxyi"]
+[ext_resource type="Texture2D" uid="uid://c7g88e7jin0nw" path="res://Assets/Sprites/FinalTiles/planet1/Background planet 1.jpg" id="4_hrxev"]
+[ext_resource type="Shader" path="res://Scenes/fog.gdshader" id="5_ekuyb"]
+[ext_resource type="TileSet" uid="uid://cota570suqyym" path="res://Scenes/TilesPlanet01.tres" id="6_3v8p8"]
+[ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator.gd" id="7_ob1to"]
+[ext_resource type="Script" path="res://addons/gaea/modifiers/2D/fill.gd" id="8_4soc8"]
+[ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="9_t5xq1"]
+[ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator_settings.gd" id="10_dal0d"]
+[ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="11_hgm7t"]
+[ext_resource type="PackedScene" uid="uid://cihlctj3okwe2" path="res://Scenes/player.tscn" id="12_cp5tt"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="13_a7svd"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="14_p7cn3"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="15_rp7qb"]
+[ext_resource type="PackedScene" uid="uid://cgceftjc8dnac" path="res://Scenes/ghost.tscn" id="16_6m8tk"]
+[ext_resource type="PackedScene" uid="uid://cb7qsha3gosur" path="res://collectibles_manager.tscn" id="17_vi4by"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_e1353"]
 
@@ -25,7 +25,7 @@ seamless = true
 noise = SubResource("FastNoiseLite_e1353")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_umstq"]
-shader = ExtResource("4_yhkby")
+shader = ExtResource("5_ekuyb")
 shader_parameter/density = 1.0
 shader_parameter/speed = Vector2(0.02, 0.01)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_73wm1")
@@ -34,7 +34,7 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_73wm1")
 polygon = PackedVector2Array(-144, -72, -1112, -72, -1112, -40, -144, -40)
 
 [sub_resource type="Resource" id="Resource_j2tlu"]
-script = ExtResource("4_5q76f")
+script = ExtResource("9_t5xq1")
 type = 1
 tilemap_layer = 0
 terrain_set = 0
@@ -43,7 +43,7 @@ id = ""
 layer = 0
 
 [sub_resource type="Resource" id="Resource_k7hg8"]
-script = ExtResource("3_gp6rl")
+script = ExtResource("8_4soc8")
 tile = SubResource("Resource_j2tlu")
 expand_left = 50
 expand_top = 0
@@ -54,7 +54,7 @@ affected_layers = Array[int]([0])
 filter_type = 0
 
 [sub_resource type="Resource" id="Resource_6ohav"]
-script = ExtResource("4_5q76f")
+script = ExtResource("9_t5xq1")
 type = 1
 tilemap_layer = 0
 terrain_set = 0
@@ -64,7 +64,7 @@ layer = 0
 
 [sub_resource type="Resource" id="Resource_v3va3"]
 resource_name = "Settings"
-script = ExtResource("5_bxa18")
+script = ExtResource("10_dal0d")
 tile = SubResource("Resource_6ohav")
 fullness_check = 0
 max_tiles = 150
@@ -80,28 +80,27 @@ Vector2i(3, 3): 0.1
 modifiers = Array[Resource("res://addons/gaea/modifiers/2D/modifier_2d.gd")]([SubResource("Resource_k7hg8")])
 
 [sub_resource type="Resource" id="Resource_p31rw"]
-script = ExtResource("11_ibmf3")
+script = ExtResource("15_rp7qb")
 duration = 1.0
 transition = 0
 ease = 2
 
 [sub_resource type="Resource" id="Resource_eliit"]
-script = ExtResource("11_ibmf3")
+script = ExtResource("15_rp7qb")
 duration = 1.0
 transition = 0
 ease = 2
 
 [node name="Level01" type="Node2D"]
-script = ExtResource("1_o1yh7")
+script = ExtResource("1_6aveb")
 
-[node name="Ship" parent="." instance=ExtResource("2_tvm5h")]
+[node name="Ship" parent="." instance=ExtResource("2_qmugw")]
 position = Vector2(-232, -96)
 scale = Vector2(0.04, 0.04)
 
 [node name="Visual" type="Node2D" parent="."]
 
 [node name="Fog" type="Sprite2D" parent="Visual"]
-visible = false
 position = Vector2(-8, -444)
 
 [node name="SkyParallax" type="ParallaxBackground" parent="Visual"]
@@ -116,7 +115,7 @@ position = Vector2(0, 1.52)
 [node name="Sky" type="Sprite2D" parent="Visual/SkyParallax/ParallaxLayer"]
 position = Vector2(-62.735, -289.96)
 scale = Vector2(0.812621, 0.812621)
-texture = ExtResource("2_74vd1")
+texture = ExtResource("3_cnxyi")
 
 [node name="FogParallax" type="ParallaxBackground" parent="Visual"]
 layer = 1
@@ -124,17 +123,17 @@ layer = 1
 [node name="BG01" type="Sprite2D" parent="Visual"]
 position = Vector2(-8, 720)
 scale = Vector2(1.30985, 1.30985)
-texture = ExtResource("3_yy8vt")
+texture = ExtResource("4_hrxev")
 
 [node name="BG02" type="Sprite2D" parent="Visual"]
 position = Vector2(1504, 720)
 scale = Vector2(1.30985, 1.30985)
-texture = ExtResource("3_yy8vt")
+texture = ExtResource("4_hrxev")
 
 [node name="BG03" type="Sprite2D" parent="Visual"]
 position = Vector2(-1512, 720)
 scale = Vector2(1.30985, 1.30985)
-texture = ExtResource("3_yy8vt")
+texture = ExtResource("4_hrxev")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Visual"]
 layer = 10
@@ -173,27 +172,27 @@ position = Vector2(1288, -3.05176e-05)
 occluder = SubResource("OccluderPolygon2D_ftq5k")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("2_5l6gf")
+tile_set = ExtResource("6_3v8p8")
 format = 2
 layer_0/name = "terrain"
 layer_0/tile_data = PackedInt32Array(-6, 1, 2, 65530, 1, 2, 131066, 1, 2, 196602, 1, 2, 262138, 196609, 0, 327674, 196609, 0, 393210, 196609, 0, 458746, 1, 2, 524282, 1, 2, 589818, 1, 2, 655354, 1, 2, 720890, 196609, 0, 786426, 196609, 0, 851962, 196609, 0, 917498, 1, 2, 983034, 1, 2, -5, 1, 2, 65531, 1, 2, 131067, 1, 2, 196603, 1, 2, 262139, 196609, 0, 327675, 196609, 0, 393211, 1, 2, 458747, 196609, 0, 524283, 196609, 0, 589819, 196609, 0, 655355, 1, 2, 720891, 196609, 0, 786427, 196609, 0, 851963, 196609, 0, 917499, 1, 2, 983035, 1, 2, -4, 1, 2, 65532, 1, 2, 131068, 1, 2, 196604, 196609, 0, 262140, 196609, 0, 327676, 196609, 0, 393212, 196609, 0, 458748, 196609, 0, 524284, 196609, 0, 589820, 196609, 0, 655356, 1, 2, 720892, 196609, 0, 786428, 196609, 0, 851964, 196609, 0, 917500, 1, 2, 983036, 1, 2, -3, 1, 2, 65533, 1, 2, 131069, 1, 2, 196605, 196609, 0, 262141, 196609, 0, 327677, 196609, 0, 393213, 196609, 0, 458749, 196609, 0, 524285, 196609, 0, 589821, 196609, 0, 655357, 196609, 0, 720893, 196609, 0, 786429, 196609, 0, 851965, 196609, 0, 917501, 196609, 0, 983037, 196609, 0, -2, 1, 2, 131070, 1, 2, 196606, 196609, 0, 262142, 196609, 0, 327678, 196609, 0, 393214, 196609, 0, 458750, 196609, 0, 524286, 196609, 0, 589822, 196609, 0, 655358, 196609, 0, 720894, 196609, 0, 786430, 196609, 0, 851966, 196609, 0, 917502, 196609, 0, 983038, 196609, 0, -1, 196609, 0, 65535, 196609, 0, 131071, 196609, 0, 196607, 196609, 0, 262143, 196609, 0, 327679, 196609, 0, 393215, 196609, 0, 458751, 196609, 0, 524287, 196609, 0, 589823, 196609, 0, 655359, 196609, 0, 720895, 196609, 0, 786431, 196609, 0, 851967, 196609, 0, 917503, 196609, 0, 983039, 1, 2, -65536, 196609, 0, 0, 196609, 0, 65536, 196609, 0, 131072, 196609, 0, 196608, 196609, 0, 262144, 196609, 0, 327680, 196609, 0, 393216, 1, 2, 458752, 1, 2, 524288, 1, 2, 589824, 1, 2, 655360, 196609, 0, 720896, 196609, 0, 786432, 196609, 0, 851968, 196609, 0, 917504, 1, 2, -65535, 1, 2, 1, 196609, 0, 65537, 196609, 0, 131073, 196609, 0, 196609, 196609, 0, 262145, 1, 2, 327681, 1, 2, 393217, 1, 2, 458753, 1, 2, 524289, 1, 2, 589825, 1, 2, 655361, 196609, 0, 720897, 196609, 0, 786433, 196609, 0, 851969, 1, 2, 917505, 1, 2, -65534, 1, 2, 2, 1, 2, 65538, 1, 2, 131074, 1, 2, 196610, 1, 2, 262146, 1, 2, 327682, 1, 2, 393218, 1, 2, 458754, 1, 2, 524290, 1, 2, 589826, 1, 2, 655362, 196609, 0, 720898, 196609, 0, 786434, 196609, 0, 851970, 1, 2, 917506, 1, 2, -17, 1, 2, 65519, 1, 2, 131055, 1, 2, 196591, 1, 2, 262127, 1, 2, 327663, 1, 2, 393199, 1, 2, 458735, 1, 2, 524271, 1, 2, 589807, 1, 2, 655343, 1, 2, 720879, 1, 2, 786415, 1, 2, 851951, 1, 2, 917487, 1, 2, 983023, 1, 2, -16, 1, 2, 65520, 1, 2, 131056, 1, 2, 196592, 1, 2, 262128, 1, 2, 327664, 1, 2, 393200, 1, 2, 458736, 1, 2, 524272, 1, 2, 589808, 1, 2, 655344, 1, 2, 720880, 196609, 0, 786416, 196609, 0, 851952, 196609, 0, 917488, 1, 2, 983024, 1, 2, -15, 1, 2, 65521, 1, 2, 131057, 1, 2, 196593, 1, 2, 262129, 1, 2, 327665, 1, 2, 393201, 1, 2, 458737, 1, 2, 524273, 1, 2, 589809, 1, 2, 655345, 1, 2, 720881, 196609, 0, 786417, 196609, 0, 851953, 196609, 0, 917489, 1, 2, 983025, 1, 2, -14, 1, 2, 65522, 1, 2, 131058, 1, 2, 196594, 1, 2, 262130, 1, 2, 327666, 1, 2, 393202, 1, 2, 458738, 1, 2, 524274, 1, 2, 589810, 1, 2, 655346, 1, 2, 720882, 196609, 0, 786418, 196609, 0, 851954, 196609, 0, 917490, 196609, 0, 983026, 1, 2, -13, 1, 2, 65523, 1, 2, 131059, 1, 2, 196595, 1, 2, 262131, 1, 2, 327667, 1, 2, 393203, 1, 2, 458739, 1, 2, 524275, 1, 2, 589811, 1, 2, 655347, 1, 2, 720883, 1, 2, 786419, 196609, 0, 851955, 196609, 0, 917491, 196609, 0, 983027, 196609, 0, -12, 1, 2, 65524, 1, 2, 131060, 1, 2, 196596, 1, 2, 262132, 1, 2, 327668, 1, 2, 393204, 1, 2, 458740, 1, 2, 524276, 1, 2, 589812, 1, 2, 655348, 1, 2, 720884, 196609, 0, 786420, 196609, 0, 851956, 196609, 0, 917492, 196609, 0, 983028, 196609, 0, -11, 1, 2, 65525, 1, 2, 131061, 1, 2, 196597, 1, 2, 262133, 1, 2, 327669, 1, 2, 393205, 1, 2, 458741, 1, 2, 524277, 1, 2, 589813, 1, 2, 655349, 1, 2, 720885, 196609, 0, 786421, 196609, 0, 851957, 196609, 0, 917493, 196609, 0, 983029, 1, 2, -10, 1, 2, 65526, 1, 2, 131062, 1, 2, 196598, 1, 2, 262134, 1, 2, 327670, 1, 2, 393206, 1, 2, 458742, 1, 2, 524278, 1, 2, 589814, 1, 2, 655350, 1, 2, 720886, 196609, 0, 786422, 196609, 0, 851958, 196609, 0, 917494, 1, 2, 983030, 1, 2, -9, 1, 2, 65527, 1, 2, 131063, 1, 2, 196599, 1, 2, 262135, 1, 2, 327671, 1, 2, 393207, 1, 2, 458743, 1, 2, 524279, 1, 2, 589815, 1, 2, 655351, 1, 2, 720887, 196609, 0, 786423, 196609, 0, 851959, 196609, 0, 917495, 1, 2, 983031, 1, 2, -8, 1, 2, 65528, 1, 2, 131064, 1, 2, 196600, 1, 2, 262136, 196609, 0, 327672, 196609, 0, 393208, 196609, 0, 458744, 1, 2, 524280, 1, 2, 589816, 1, 2, 655352, 1, 2, 720888, 196609, 0, 786424, 196609, 0, 851960, 1, 2, 917496, 1, 2, 983032, 1, 2, -7, 1, 2, 65529, 1, 2, 131065, 1, 2, 196601, 1, 2, 262137, 196609, 0, 327673, 196609, 0, 393209, 196609, 0, 458745, 1, 2, 524281, 1, 2, 589817, 1, 2, 655353, 1, 2, 720889, 196609, 0, 786425, 196609, 0, 851961, 1, 2, 917497, 1, 2, 983033, 1, 2, 1048559, 1, 2, 1114095, 1, 2, 1179631, 1, 2, 1245167, 1, 2, 1310703, 1, 2, 1376239, 1, 2, 1048560, 1, 2, 1114096, 1, 2, 1179632, 1, 2, 1245168, 1, 2, 1310704, 1, 2, 1376240, 1, 2, 1048561, 1, 2, 1114097, 1, 2, 1179633, 1, 2, 1245169, 1, 2, 1310705, 1, 2, 1376241, 1, 2, 1048562, 1, 2, 1114098, 1, 2, 1179634, 1, 2, 1245170, 1, 2, 1310706, 1, 2, 1376242, 1, 2, 1048563, 1, 2, 1114099, 1, 2, 1179635, 1, 2, 1245171, 1, 2, 1310707, 1, 2, 1376243, 1, 2, 1048564, 1, 2, 1114100, 1, 2, 1179636, 1, 2, 1245172, 1, 2, 1310708, 1, 2, 1376244, 1, 2, 1048565, 1, 2, 1114101, 1, 2, 1179637, 1, 2, 1245173, 1, 2, 1310709, 1, 2, 1376245, 1, 2, 1048566, 1, 2, 1114102, 1, 2, 1179638, 1, 2, 1245174, 1, 2, 1310710, 1, 2, 1376246, 1, 2, 1048567, 1, 2, 1114103, 1, 2, 1179639, 1, 2, 1245175, 1, 2, 1310711, 1, 2, 1376247, 1, 2, 1048568, 1, 2, 1114104, 1, 2, 1179640, 1, 2, 1245176, 1, 2, 1310712, 196609, 0, 1376248, 1, 2, 1048569, 1, 2, 1114105, 1, 2, 1179641, 1, 2, 1245177, 1, 2, 1310713, 196609, 0, 1376249, 1, 2, 1048570, 1, 2, 1114106, 1, 2, 1179642, 1, 2, 1245178, 1, 2, 1310714, 196609, 0, 1376250, 1, 2, 1048571, 196609, 0, 1114107, 196609, 0, 1179643, 196609, 0, 1245179, 196609, 0, 1310715, 196609, 0, 1376251, 1, 2, 1048572, 196609, 0, 1114108, 196609, 0, 1179644, 196609, 0, 1245180, 196609, 0, 1310716, 196609, 0, 1376252, 1, 2, 1048573, 196609, 0, 1114109, 196609, 0, 1179645, 1, 2, 1245181, 1, 2, 1310717, 1, 2, 1376253, 1, 2, 1048574, 196609, 0, 1114110, 196609, 0, 1179646, 1, 2, 1245182, 1, 2, 1310718, 1, 2, 1376254, 1, 2, 1048575, 1, 2, 1114111, 1, 2, 1179647, 1, 2, 1245183, 1, 2, 1310719, 1, 2, 1376255, 1, 2, 983040, 1, 2, 1048576, 1, 2, 1114112, 1, 2, 1179648, 1, 2, 1245184, 1, 2, 1310720, 1, 2, 983041, 1, 2, 1048577, 1, 2, 1114113, 1, 2, 1179649, 1, 2, 1245185, 1, 2, 1310721, 1, 2, 983042, 1, 2, 1048578, 1, 2, 1114114, 1, 2, 1179650, 1, 2, 1245186, 1, 2, 1310722, 1, 2, 1310727, 1, 2, 1245191, 1, 2, 1179655, 1, 2, 1114119, 1, 2, 1048583, 1, 2, 983047, 1, 2, 917511, 1, 2, 851975, 1, 2, 786439, 1, 2, 720903, 1, 2, 655367, 1, 2, 589831, 1, 2, 524295, 1, 2, 458759, 1, 2, 393223, 1, 2, 327687, 1, 2, 262151, 1, 2, 196615, 1, 2, 131079, 1, 2, 65543, 1, 2, 7, 1, 2, -65529, 1, 2, 1310726, 1, 2, 1245190, 1, 2, 1179654, 1, 2, 1114118, 1, 2, 1048582, 1, 2, 983046, 1, 2, 917510, 1, 2, 851974, 1, 2, 786438, 1, 2, 589830, 1, 2, 524294, 1, 2, 458758, 1, 2, 393222, 1, 2, 327686, 1, 2, 262150, 1, 2, 196614, 1, 2, 131078, 1, 2, 65542, 1, 2, 6, 1, 2, -65530, 1, 2, 1310725, 1, 2, 1245189, 1, 2, 1179653, 1, 2, 1114117, 1, 2, 1048581, 1, 2, 983045, 1, 2, 917509, 1, 2, 851973, 1, 2, 786437, 1, 2, 589829, 1, 2, 524293, 1, 2, 458757, 1, 2, 393221, 1, 2, 327685, 1, 2, 262149, 1, 2, 196613, 1, 2, 131077, 1, 2, 65541, 1, 2, 5, 1, 2, -65531, 1, 2, 1310724, 1, 2, 1245188, 1, 2, 1179652, 1, 2, 1114116, 1, 2, 1048580, 1, 2, 983044, 1, 2, 917508, 1, 2, 851972, 1, 2, 589828, 1, 2, 524292, 1, 2, 458756, 1, 2, 393220, 1, 2, 327684, 1, 2, 262148, 1, 2, 196612, 1, 2, 131076, 1, 2, 65540, 1, 2, 4, 1, 2, -65532, 1, 2, 1310723, 1, 2, 1245187, 1, 2, 1179651, 1, 2, 1114115, 1, 2, 1048579, 1, 2, 983043, 1, 2, 917507, 1, 2, 851971, 1, 2, 589827, 1, 2, 524291, 1, 2, 458755, 1, 2, 393219, 1, 2, 327683, 1, 2, 262147, 1, 2, 196611, 1, 2, 131075, 1, 2, 65539, 1, 2, 3, 1, 2, -65533, 1, 2, 720902, 196609, 0, 655366, 196609, 0, 720901, 196609, 0, 655365, 196609, 0, 786436, 196609, 0, 720900, 196609, 0, 655364, 196609, 0, 786435, 196609, 0, 720899, 196609, 0, 655363, 196609, 0)
 
 [node name="TileMapSurface" type="TileMap" parent="."]
 position = Vector2(0, 72)
-tile_set = ExtResource("2_5l6gf")
+tile_set = ExtResource("6_3v8p8")
 format = 2
 layer_0/tile_data = PackedInt32Array(-262139, 1, 4, -262138, 1, 4, -262137, 1, 4, -262136, 1, 4, -262135, 1, 4, -262134, 1, 4, -262133, 1, 4, -262132, 1, 4, -262131, 1, 4, -262130, 1, 4, -262129, 1, 4, -262128, 1, 4, -262127, 1, 4, -262126, 1, 4, -262125, 1, 4, -262124, 1, 4, -262123, 1, 4, -262122, 1, 4, -262121, 1, 4, -262120, 1, 4, -262119, 1, 4, -262118, 1, 4, -262117, 1, 4, -196613, 1, 4, -196614, 1, 4, -196615, 1, 4, -196616, 1, 4, -196617, 1, 4, -196618, 1, 4, -196619, 1, 4, -196620, 1, 4, -196621, 1, 4, -196622, 1, 4, -196623, 1, 4, -196624, 1, 4, -196625, 1, 4, -196626, 1, 4, -196627, 1, 4, -196628, 1, 4, -196629, 1, 4, -196630, 1, 4, -196631, 1, 4, -196632, 1, 4, -196633, 1, 4, -196634, 1, 4, -196635, 1, 4, -196636, 1, 4, -196637, 1, 4, -196638, 1, 4, -196639, 1, 4)
 
 [node name="WalkerGenerator" type="Node" parent="."]
-script = ExtResource("2_gu4rp")
+script = ExtResource("7_ob1to")
 settings = SubResource("Resource_v3va3")
 
 [node name="TilemapGaeaRenderer" type="Node" parent="." node_paths=PackedStringArray("tile_map", "generator")]
-script = ExtResource("6_vr430")
+script = ExtResource("11_hgm7t")
 tile_map = NodePath("../TileMap")
 generator = NodePath("../WalkerGenerator")
 
-[node name="Player" parent="." instance=ExtResource("8_8m8fb")]
+[node name="Player" parent="." instance=ExtResource("12_cp5tt")]
 position = Vector2(0, -168)
 
 [node name="Cam_Target_Player" type="Marker2D" parent="Player"]
@@ -203,10 +202,10 @@ position = Vector2(0, -168)
 zoom = Vector2(2, 2)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("9_heqv5")
+script = ExtResource("13_a7svd")
 
 [node name="Player_Pcam" type="Node2D" parent="Camera2D" node_paths=PackedStringArray("follow_target")]
-script = ExtResource("10_sfkad")
+script = ExtResource("14_p7cn3")
 priority = 1
 follow_mode = 2
 follow_target = NodePath("../../Player/Cam_Target_Player")
@@ -218,7 +217,7 @@ draw_limits = true
 
 [node name="Ship_Pcam" type="Node2D" parent="Camera2D" node_paths=PackedStringArray("follow_targets")]
 position = Vector2(0, 84)
-script = ExtResource("10_sfkad")
+script = ExtResource("14_p7cn3")
 follow_mode = 3
 follow_targets = [NodePath("../../Player/Cam_Target_Player"), NodePath("../../Cam_Target_Ship")]
 tween_resource = SubResource("Resource_eliit")
@@ -228,51 +227,51 @@ draw_limits = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Node2D" parent="Enemies" instance=ExtResource("13_we6ts")]
+[node name="Node2D" parent="Enemies" instance=ExtResource("16_6m8tk")]
 
-[node name="Node2D2" parent="Enemies" instance=ExtResource("13_we6ts")]
+[node name="Node2D2" parent="Enemies" instance=ExtResource("16_6m8tk")]
 position = Vector2(-240, 184)
 
-[node name="Node2D3" parent="Enemies" instance=ExtResource("13_we6ts")]
+[node name="Node2D3" parent="Enemies" instance=ExtResource("16_6m8tk")]
 position = Vector2(56, 80)
 
-[node name="Node2D4" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("13_we6ts")]
+[node name="Node2D4" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_6m8tk")]
 position = Vector2(-368, 384)
 stunned = NodePath("../Node2D/Stunned")
 chase = NodePath("../Node2D/Chase")
 wander_timer = NodePath("../Node2D/Wander")
 
-[node name="Node2D5" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("13_we6ts")]
-position = Vector2(-608, 568)
+[node name="Node2D5" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_6m8tk")]
+position = Vector2(-144, 576)
 stunned = NodePath("../Node2D2/Stunned")
 chase = NodePath("../Node2D2/Chase")
 wander_timer = NodePath("../Node2D2/Wander")
 
-[node name="Node2D6" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("13_we6ts")]
+[node name="Node2D6" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_6m8tk")]
 position = Vector2(-312, 464)
 stunned = NodePath("../Node2D3/Stunned")
 chase = NodePath("../Node2D3/Chase")
 wander_timer = NodePath("../Node2D3/Wander")
 
-[node name="Node2D7" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("13_we6ts")]
-position = Vector2(376, 416)
+[node name="Node2D7" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_6m8tk")]
+position = Vector2(-64, 400)
 stunned = NodePath("../Node2D/Stunned")
 chase = NodePath("../Node2D/Chase")
 wander_timer = NodePath("../Node2D/Wander")
 
-[node name="Node2D8" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("13_we6ts")]
-position = Vector2(136, 600)
+[node name="Node2D8" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_6m8tk")]
+position = Vector2(104, 392)
 stunned = NodePath("../Node2D2/Stunned")
 chase = NodePath("../Node2D2/Chase")
 wander_timer = NodePath("../Node2D2/Wander")
 
-[node name="Node2D9" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("13_we6ts")]
-position = Vector2(432, 496)
+[node name="Node2D9" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_6m8tk")]
+position = Vector2(-120, 280)
 stunned = NodePath("../Node2D3/Stunned")
 chase = NodePath("../Node2D3/Chase")
 wander_timer = NodePath("../Node2D3/Wander")
 
-[node name="CollectiblesManager" parent="." groups=["CollectiblesManager"] instance=ExtResource("14_dipkh")]
+[node name="CollectiblesManager" parent="." groups=["CollectiblesManager"] instance=ExtResource("17_vi4by")]
 
 [node name="Bounds" type="Node2D" parent="."]
 

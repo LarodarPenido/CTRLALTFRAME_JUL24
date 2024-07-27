@@ -112,7 +112,12 @@ position = Vector2(21.535, -0.165)
 
 [node name="InvincibleTimer" type="Timer" parent="."]
 
+[node name="DyingTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="CatnipPower" to="." method="_on_catnip_power_timeout"]
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
+[connection signal="timeout" from="DyingTimer" to="." method="_on_dying_timer_timeout"]
 
 [editable path="Node2D"]

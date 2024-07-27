@@ -1,15 +1,207 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3888v08vhh6j"]
+[gd_scene load_steps=30 format=3 uid="uid://b3888v08vhh6j"]
 
-[ext_resource type="Script" path="res://Scripts/Node2D.gd" id="1_m5i7h"]
+[ext_resource type="Script" path="res://Scripts/Briefing.gd" id="1_m5i7h"]
+[ext_resource type="Theme" uid="uid://c78hinwaisvpk" path="res://Assets/Themes/GatoGelatoTheme.tres" id="2_05gcm"]
+[ext_resource type="Texture2D" uid="uid://gq1lbwty3274" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-001.jpg" id="3_nnebd"]
+[ext_resource type="Texture2D" uid="uid://djo5q21yrl7ct" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-002.jpg" id="4_k0vpi"]
+[ext_resource type="Texture2D" uid="uid://d1apt76skpwem" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-003.jpg" id="5_pxslb"]
+[ext_resource type="Texture2D" uid="uid://drcgkpei2op52" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-004.jpg" id="6_rw0wk"]
+[ext_resource type="Texture2D" uid="uid://oibc5mpjwgcu" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-005.jpg" id="7_dl4lq"]
+[ext_resource type="Texture2D" uid="uid://um1lums4areh" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-006.jpg" id="8_51ry8"]
+[ext_resource type="Texture2D" uid="uid://dwgr8npefnlbc" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-007.jpg" id="9_1no01"]
+[ext_resource type="Texture2D" uid="uid://cmcw18f81g8p" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-008.jpg" id="10_sqv05"]
+[ext_resource type="Texture2D" uid="uid://ds1lvutnjmdbo" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-009.jpg" id="11_76e44"]
+[ext_resource type="Texture2D" uid="uid://cnsfiiyjmrhxq" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-010.jpg" id="12_libp4"]
+[ext_resource type="Texture2D" uid="uid://cgg3eofvscr70" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-011.jpg" id="13_x1bhr"]
+[ext_resource type="Texture2D" uid="uid://70tk1d1w822x" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-012.jpg" id="14_wrhtx"]
+[ext_resource type="Texture2D" uid="uid://cl18h7jy3jom0" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-013.jpg" id="15_xkjfq"]
+[ext_resource type="Texture2D" uid="uid://bit16ljlyig80" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-014.jpg" id="16_642re"]
+[ext_resource type="Texture2D" uid="uid://dbeytyxl6v0o0" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-015.jpg" id="17_qymt5"]
+[ext_resource type="Texture2D" uid="uid://bsibx75uhpyob" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-016.jpg" id="18_1d43u"]
+[ext_resource type="Texture2D" uid="uid://bxfympr5aq8gp" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-017.jpg" id="19_pwths"]
+[ext_resource type="Texture2D" uid="uid://btn8e10o73xi7" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-018.jpg" id="20_y18yw"]
+[ext_resource type="Texture2D" uid="uid://bd3e4j4h86llg" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-019.jpg" id="21_ajhl4"]
+[ext_resource type="Texture2D" uid="uid://bqj3d47ptlkwe" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-020.jpg" id="22_vblep"]
+[ext_resource type="Texture2D" uid="uid://bsoqffyngt6wb" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-021.jpg" id="23_1w00h"]
+[ext_resource type="Texture2D" uid="uid://dq7q661cauc4f" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-022.jpg" id="24_7hhvl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gk5rc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nnebd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k0vpi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pxslb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rw0wk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dl4lq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_51ry8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1no01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_sqv05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_76e44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_libp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_x1bhr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_wrhtx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xkjfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_642re")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_qymt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1d43u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pwths")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_y18yw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ajhl4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_vblep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_1w00h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_7hhvl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_q42t2"]
+resource_name = "BookAnimation"
+
+[sub_resource type="Animation" id="Animation_ip2qv"]
+resource_name = "BookPageFlip"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Container/Sprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Container/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_l42yv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Container/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ld2q"]
+_data = {
+"BookAnimation": SubResource("Animation_q42t2"),
+"BookPageFlip": SubResource("Animation_ip2qv"),
+"RESET": SubResource("Animation_l42yv")
+}
 
 [node name="Briefing" type="Node2D"]
 script = ExtResource("1_m5i7h")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Control" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Container" type="Control" parent="Control"]
+layout_mode = 2
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Control/Container"]
+position = Vector2(576, 324)
+sprite_frames = SubResource("SpriteFrames_gk5rc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3ld2q")
+}
+
+[node name="<-" type="Button" parent="."]
+offset_left = 104.0
+offset_top = 568.0
+offset_right = 173.0
+offset_bottom = 604.0
+theme = ExtResource("2_05gcm")
+text = "<-"
+
+[node name="->" type="Button" parent="."]
+offset_left = 992.0
+offset_top = 568.0
+offset_right = 1060.0
+offset_bottom = 604.0
+theme = ExtResource("2_05gcm")
+text = "->"
 
 [node name="Avancar" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Avançar"
+offset_left = 480.0
+offset_top = 32.0
+offset_right = 701.0
+offset_bottom = 68.0
+theme = ExtResource("2_05gcm")
+text = "Decolar"
 
+[connection signal="pressed" from="<-" to="." method="_on_flip_back_pressed"]
+[connection signal="pressed" from="->" to="." method="_on_flip_forward_pressed"]
 [connection signal="pressed" from="Avancar" to="." method="_on_avancar_pressed"]

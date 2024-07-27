@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba5vqerrt3nhq"]
+
+[ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_4el2k"]
+[ext_resource type="Texture2D" uid="uid://cqc0ir8oh3dw6" path="res://Assets/Sprites/Cutscenes/temp_game_over.jpg" id="2_gpucb"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4el2k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_gpucb")
+
+[node name="RetryButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

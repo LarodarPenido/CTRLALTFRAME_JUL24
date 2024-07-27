@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var game: Node2D
+@onready var hp_bar: Control
 
 var player_embarked = false
 
@@ -15,8 +16,9 @@ var catnip_power = false
 
 var invincible = false
 @onready var invincible_timer = $InvincibleTimer
+@onready var dying_timer = $DyingTimer
 
-
+@export var max_hitpoints = 3
 @export var hitpoints = 3
 
 @export var speed = 300
@@ -36,7 +38,7 @@ var current_speed: Vector2 = Vector2.ZERO
 func _ready():
 	game = get_tree().get_first_node_in_group("game")
 	audio_manager = get_tree().get_first_node_in_group("audiomanager")
-	
+	hp_bar = get_tree().get_first_node_in_group("hpbar")
 	
 
 
@@ -102,13 +104,20 @@ func take_damage():
 
 	game.screen_shake(.1, .1)
 	hitpoints -= 1
-	
+	hp_bar.update_health(hitpoints)
 	if hitpoints <= 0 :
-		print("you ded")
+		die()
 	# TODO dying system
 	#hurt sound
 	#hurt anim
-
+func die():
+	print("morrio")
+	dying_timer.start()
+	# modulate down sprite
+	#dramatic zoom
+	# modulate in ghost sprite
+	#transition to game over state
+	
 
 func _on_catnip_power_timeout():
 	deactivate_catnip_powerup()
@@ -128,3 +137,7 @@ func _on_invincible_timer_timeout():
 	#
 	#player_sprite.self_modulate.a = lerp(1,0, 0.5)
 	#player_sprite.self_modulate.a = lerp(1,, 0.5)
+
+
+func _on_dying_timer_timeout():
+	game.change_state(game.States.GAMEOVER)
