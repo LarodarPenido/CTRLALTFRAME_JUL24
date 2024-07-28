@@ -83,16 +83,15 @@ func _activate_catnip_powerup():
 	
 	
 func _process(delta):
+	hp_bar.update_health(hitpoints)
 	if catnip_power:
 		catnip_aura.self_modulate.a = catnip_power_timer.time_left
 		aura.self_modulate.a = catnip_power_timer.time_left
 		
 
 func get_input():
-	
 	input_direction = Input.get_vector("left", "right", "up", "down")
 	
-
 func _physics_process(delta):
 	var current_state = game.get_current_state()
 	if is_alive:  ##current_state in [game.States.LEVEL01, game.States.LEVEL02, game.States.LEVEL03] and # restrict to level?
@@ -129,7 +128,7 @@ func take_damage():
 	audio_manager.play_player_hit()
 	game.screen_shake(.1, .1)
 	hitpoints -= 1
-	hp_bar.update_health(hitpoints)
+	#hp_bar.update_health(hitpoints)
 	if hitpoints <= 0 :
 		is_alive = false
 		die()

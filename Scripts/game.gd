@@ -44,9 +44,6 @@ var level_complete = false # fuel cheio e star e book pegos = level complete() -
 ## Level 01 Begin
 @onready var arrival_01 = $CanvasLayer/Story/Arrival01
 
-
-
-
 ## Levels
 const LEVEL_01 = preload("res://Scenes/Level01.tscn")
 const LEVEL_02 = preload("res://Scenes/Level02.tscn")
@@ -185,14 +182,13 @@ func exit_level_01():
 	reset_finds()
 	# Additional cleanup for level 01 state
 func enter_telescope_01():
-	
+	level_interface.hide()
 	get_tree().change_scene_to_file("res://Scenes/telescope01.tscn")
 	
 func exit_telescope_01():
-	pass
+	reset_finds()
 
 func enter_level_02():
-
 	current_level = "res://Scenes/Level02.tscn"
 	main_menu.hide()
 	level_interface.show()
@@ -203,13 +199,13 @@ func exit_level_02():
 	reset_finds()
 
 func enter_telescope_02():
+	level_interface.hide()
 	get_tree().change_scene_to_file("res://Scenes/telescope02.tscn")
 
 func exit_telescope_02():
-	pass
+	reset_finds()
 
 func enter_level_03():
-
 	main_menu.hide()
 	level_interface.show()
 	current_level = "res://Scenes/Level03.tscn"
@@ -220,36 +216,31 @@ func exit_level_03():
 	reset_finds()
 
 func enter_gameover():
+	level_interface.hide()
 	get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 
 func exit_gameover():
-	# Cleanup for game over state
-	pass
+	reset_finds()
+	player.reset_player()
 
 func enter_end():
+	level_interface.hide()
 	get_tree().change_scene_to_file("res://Scenes/ending.tscn")
 
 func exit_end():
-	# Cleanup for end state
-	pass
-
+	reset_finds()
+	player.reset_player()
 
 func _on_start_game_pressed():
 	change_state(States.BRIEFING)
 
 func _on_level_01_completed():
-	
-	## TODO pass thourhg book scene
 	change_state(States.TELESCOPE01)
 
 func _on_level_02_completed():
-	## TODO pass thourhg book scene
-	print("can go to level 03")
 	change_state(States.TELESCOPE02)
 
 func _on_level_03_completed():
-	## TODO pass thourhg book scene
-	print("can go to end")
 	change_state(States.END)
 
 func _on_gameover():
@@ -257,7 +248,6 @@ func _on_gameover():
 
 func _on_quit_pressed():
 	get_tree().quit()
-
 
 func _process(delta):
 	player = get_tree().get_first_node_in_group("player")
@@ -288,7 +278,6 @@ func _on_quake_timer_timeout():
 	shake_reset()
 
 ## Item controls
-
 func _on_item_picked(item_type: String):
 
 	match item_type:
@@ -303,16 +292,12 @@ func _on_item_picked(item_type: String):
 			
 func _update_fuel_bar():
 	fuel_level += 1
-	#prints("fuel collected", fuel_level)
 	if fuel_level == 10:
 		fuel_full = true
-		#prints("tanque cheio")
 	check_level_complete()
 
 func _collect_red_mineral():
 	wand_level += 1
-	## TODO display label powerup
-	print("wand level: " + str(wand_level))
 	
 func _collect_star_fragment():
 	check_level_complete()
@@ -335,15 +320,8 @@ func retry_level():
 func check_level_complete():
 	if fuel_full and book_found and star_found:
 		level_complete = true
-		#print("level complete")
-	
-
 
 func _on_state_checker_timer_timeout():
-	#print("state check")
 	player = get_tree().get_first_node_in_group("player")
-	#print(player)
 	if player:
-		#print("level complete: " + str(level_complete))
-		#print("player emarked: " + str(player.player_embarked))
 		state_checker_timer.start()

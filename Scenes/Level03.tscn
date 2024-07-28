@@ -98,6 +98,11 @@ scroll_base_scale = Vector2(0.2, 0.2)
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Visual/SkyParallax"]
 position = Vector2(0, 1.52)
 
+[node name="Sky2" type="Sprite2D" parent="Visual/SkyParallax/ParallaxLayer"]
+position = Vector2(-56, -164.825)
+scale = Vector2(2.41, 2.41)
+texture = ExtResource("3_xrwmw")
+
 [node name="Sky" type="Sprite2D" parent="Visual/SkyParallax/ParallaxLayer"]
 position = Vector2(-62.735, -289.96)
 scale = Vector2(0.812621, 0.812621)
@@ -186,6 +191,48 @@ generator = NodePath("../WalkerGenerator")
 [node name="Node2D" parent="Enemies" instance=ExtResource("16_lme1t")]
 position = Vector2(0, 272)
 
+[node name="Node2D10" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_lme1t")]
+position = Vector2(0, 272)
+stunned = NodePath("../Node2D/Stunned")
+chase = NodePath("../Node2D/Chase")
+wander_timer = NodePath("../Node2D/Wander")
+
+[node name="Node2D11" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_lme1t")]
+position = Vector2(-256, 104)
+stunned = NodePath("../Node2D/Stunned")
+chase = NodePath("../Node2D/Chase")
+wander_timer = NodePath("../Node2D/Wander")
+
+[node name="Node2D12" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_lme1t")]
+position = Vector2(-88, 104)
+stunned = NodePath("../Node2D/Stunned")
+chase = NodePath("../Node2D/Chase")
+wander_timer = NodePath("../Node2D/Wander")
+
+[node name="Node2D13" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_lme1t")]
+position = Vector2(232, 48)
+stunned = NodePath("../Node2D/Stunned")
+chase = NodePath("../Node2D/Chase")
+wander_timer = NodePath("../Node2D/Wander")
+
+[node name="Node2D14" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_lme1t")]
+position = Vector2(80, 32)
+stunned = NodePath("../Node2D/Stunned")
+chase = NodePath("../Node2D/Chase")
+wander_timer = NodePath("../Node2D/Wander")
+
+[node name="Node2D15" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_lme1t")]
+position = Vector2(-472, 152)
+stunned = NodePath("../Node2D/Stunned")
+chase = NodePath("../Node2D/Chase")
+wander_timer = NodePath("../Node2D/Wander")
+
+[node name="Node2D16" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("16_lme1t")]
+position = Vector2(336, 184)
+stunned = NodePath("../Node2D/Stunned")
+chase = NodePath("../Node2D/Chase")
+wander_timer = NodePath("../Node2D/Wander")
+
 [node name="Node2D2" parent="Enemies" instance=ExtResource("16_lme1t")]
 position = Vector2(-240, 288)
 
@@ -234,6 +281,20 @@ wander_timer = NodePath("../Node2D3/Wander")
 collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PackedVector2Array(-368, -64, -352, -152, -296, -208, -216, -272, -72, -304, 64, -288, 192, -264, 272, -208, 328, -136, 336, -64, 376, -64, 376, -160, 344, -280, 232, -336, 32, -392, -208, -384, -376, -264, -472, -136, -456, -64)
+
+[node name="Bounds2" type="StaticBody2D" parent="."]
+position = Vector2(1616, 72)
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds2"]
+polygon = PackedVector2Array(-368, -64, -352, -152, -296, -208, -216, -272, -72, -304, 64, -288, 192, -264, 272, -208, 328, -136, 336, -64, 376, -64, 376, -160, 344, -280, 232, -336, 32, -392, -208, -384, -376, -264, -472, -136, -456, -64)
+
+[node name="Bounds3" type="StaticBody2D" parent="."]
+position = Vector2(-1512, 88)
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds3"]
 polygon = PackedVector2Array(-368, -64, -352, -152, -296, -208, -216, -272, -72, -304, 64, -288, 192, -264, 272, -208, 328, -136, 336, -64, 376, -64, 376, -160, 344, -280, 232, -336, 32, -392, -208, -384, -376, -264, -472, -136, -456, -64)
 
 [node name="Player" parent="." instance=ExtResource("14_qjnhu")]

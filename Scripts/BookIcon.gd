@@ -10,3 +10,5 @@ func _ready():
 func _process(delta):
 	if game.book_found:
 		book.show()
+	else:
+		book.hide()

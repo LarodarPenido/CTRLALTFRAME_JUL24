@@ -11,7 +11,6 @@ CHASE,
 FOLLOW,
 STUNNED, 
 BANISHED,
-
 }
 var state = States.WANDER
 
@@ -119,6 +118,12 @@ func _wander(delta):
 	if player.global_position.distance_to(global_position) < aggro_range:
 		state = States.CHASE
 		chase_timer = 3.0 * chase_time_multiplier
+		
+		# Set flip_h based on movement direction
+		## Possible BUG
+	var direction = (player.global_position - global_position).normalized()
+	animated_sprite_2d.flip_h = direction.x < 0
+		
 
 func choose_wander_direction():
 	wander_direction = Vector2(randf() - 0.5, randf() - 0.5).normalized()
@@ -132,6 +137,9 @@ func _chase(delta):
 	if chase_timer <= 0:
 		state = States.WANDER
 
+
+	animated_sprite_2d.flip_h = direction.x < 0
+	
 func _follow(delta):
 	
 	# Move towards the player, but keep some distance
@@ -148,7 +156,7 @@ func _stunned(delta):
 		animated_sprite_2d.self_modulate.a = 1
 		state = States.WANDER
 
-## TODO Signal connectios
+
 func _on_player_catnip_touch():
 	state = States.BANISHED
 	queue_free()

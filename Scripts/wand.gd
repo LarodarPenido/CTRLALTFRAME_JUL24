@@ -24,7 +24,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	game = get_tree().get_first_node_in_group("game")
 	audio_manager = get_tree().get_first_node_in_group("audiomanager")
-	current_spell_cooldown = spell_cooldown
+	#current_spell_cooldown = spell_cooldown
 
 func _process(delta):
 	if game:
