@@ -1,30 +1,59 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgceftjc8dnac"]
+[gd_scene load_steps=14 format=3 uid="uid://cgceftjc8dnac"]
 
 [ext_resource type="Script" path="res://Scripts/ghost.gd" id="1_6i6hu"]
-[ext_resource type="Texture2D" uid="uid://bv1tvmtfsayeq" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/000.png" id="1_yqg8i"]
+[ext_resource type="Texture2D" uid="uid://cxi63tq5p4mfx" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/IMG_0300.PNG" id="2_37n4f"]
+[ext_resource type="Texture2D" uid="uid://diypb4aj8enlp" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/IMG_0301.PNG" id="3_3dotv"]
+[ext_resource type="Texture2D" uid="uid://b60vt6l156kl0" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/IMG_0302.PNG" id="4_8kh34"]
+[ext_resource type="Texture2D" uid="uid://cme5n57f2sp6x" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/IMG_0303.PNG" id="5_w506q"]
+[ext_resource type="Texture2D" uid="uid://3i10xue077bw" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/IMG_0304.PNG" id="6_8gsar"]
+[ext_resource type="Texture2D" uid="uid://c86o0al2phubk" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/IMG_0305.PNG" id="7_dire5"]
+[ext_resource type="Texture2D" uid="uid://cj2tupsj1xdby" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/IMG_0306.PNG" id="8_5plx0"]
+[ext_resource type="Texture2D" uid="uid://ub5kd3fmvj58" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/IMG_0307.PNG" id="9_raehj"]
+[ext_resource type="Texture2D" uid="uid://bxv13napjr4ku" path="res://Assets/Sprites/Ghost_Download/Ghost_Download/IMG_0308.PNG" id="10_lk00h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wffmb"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t5xxo"]
-atlas = ExtResource("1_yqg8i")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mtc6u"]
-atlas = ExtResource("1_yqg8i")
-region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hht7u"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t5xxo")
+"texture": ExtResource("2_37n4f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mtc6u")
+"texture": ExtResource("3_3dotv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8kh34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w506q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8gsar")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 12.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bb2tg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_dire5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5plx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_raehj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lk00h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
 }]
 
 [node name="Node2D" type="CharacterBody2D" node_paths=PackedStringArray("stunned", "chase", "wander_timer")]
@@ -39,9 +68,16 @@ wander_timer = NodePath("Wander")
 shape = SubResource("CapsuleShape2D_wffmb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_hht7u")
 autoplay = "default"
-frame_progress = 0.99951
+frame_progress = 0.77272
+
+[node name="Ghost_stun" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.03, 0.03)
+sprite_frames = SubResource("SpriteFrames_bb2tg")
+autoplay = "default"
 
 [node name="Stunned" type="Timer" parent="."]
 
@@ -54,5 +90,7 @@ autostart = true
 
 [node name="DamageTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
 
 [connection signal="timeout" from="Wander" to="." method="_on_wander_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_can_damage_timer_timeout"]

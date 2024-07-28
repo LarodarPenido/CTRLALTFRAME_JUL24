@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://cwy7ly2qoj4yq"]
+[gd_scene load_steps=28 format=3 uid="uid://cwy7ly2qoj4yq"]
 
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="1_dm0en"]
 [ext_resource type="AudioStream" uid="uid://2nb26u6yw7h8" path="res://Assets/Sounds/Excavation/rock-destroy-6409.mp3" id="2_y0xgk"]
 [ext_resource type="AudioStream" uid="uid://b2adjs7sib1ng" path="res://Assets/Sounds/spellhit.mp3" id="3_lfjmh"]
+[ext_resource type="AudioStream" uid="uid://b5fbbn6u4wxp" path="res://Assets/Sounds/Player/ough-47202.mp3" id="4_6xo2f"]
 [ext_resource type="AudioStream" uid="uid://by2cd46gi657m" path="res://Assets/Sounds/Excavation/RockHit_SFX Edit 1 Export 1 Track 1 Render 0.mp3" id="4_7iv4g"]
 [ext_resource type="AudioStream" uid="uid://cbjchwsjggnd1" path="res://Assets/Sounds/Excavation/RockHit_SFX Edit 1 Export 1 Track 2 Render 0.mp3" id="5_lmy10"]
 [ext_resource type="AudioStream" uid="uid://cvafaq50rdxl6" path="res://Assets/Sounds/Excavation/RockHit_SFX Edit 1 Export 1 Track 3 Render 0.mp3" id="6_mgijm"]
@@ -30,7 +31,9 @@ stream_0/stream = ExtResource("3_lfjmh")
 stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q0vqw"]
+random_pitch = 1.51
 streams_count = 1
+stream_0/stream = ExtResource("4_6xo2f")
 stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vgwlr"]
@@ -112,6 +115,7 @@ stream = SubResource("AudioStreamRandomizer_uiat6")
 
 [node name="PlayerHurt" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = SubResource("AudioStreamRandomizer_q0vqw")
+pitch_scale = 1.35
 
 [node name="PlayerDie" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 

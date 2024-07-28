@@ -56,7 +56,7 @@ func generate(starting_grid: GaeaGrid = null) -> void:
 
 	grid_updated.emit()
 	generation_finished.emit()
-	print("Calling count_total_destructible_tiles")
+	#print("Calling count_total_destructible_tiles")
 	collectibles_manager.count_total_destructible_tiles()
 
 

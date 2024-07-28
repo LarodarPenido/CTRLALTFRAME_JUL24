@@ -5,6 +5,7 @@ extends Node2D
 @onready var cooldown_timer = $CooldownTimer
 @onready var can_shoot = true
 @export var spell_cooldown = .3
+
 @onready var current_spell_cooldown: float
 @onready var wand_point = $WandPoint
 @onready var wand_sprite = $WandSprite
@@ -28,9 +29,10 @@ func _ready():
 func _process(delta):
 	if game:
 		if !player.catnip_power:
-			current_spell_cooldown = spell_cooldown - (game.wand_level * .05)
+			current_spell_cooldown = .3 - (game.wand_level * .05)
+			#current_spell_cooldown = spell_cooldown - (game.wand_level * .05)
 		else:
-			current_spell_cooldown = (spell_cooldown - (game.wand_level * .02)) / 3
+			current_spell_cooldown = (.3 - (game.wand_level * .02)) / 3
 	
 	if Input.is_action_pressed("fire"):
 		cast_spell()
@@ -49,6 +51,9 @@ func _process(delta):
 	show_behind_parent = true
 
 func cast_spell():
+	if !player.is_alive:
+		return
+	
 	if can_shoot:
 		
 		#game.screen_shake(.001, .01)

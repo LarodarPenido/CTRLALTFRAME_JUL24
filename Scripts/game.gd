@@ -5,6 +5,9 @@ extends Node2D
 
 @onready var player: CharacterBody2D
 
+const ENDING = preload("res://Scenes/ending.tscn")
+
+
 enum States 
 {
 MAINMENU,
@@ -24,22 +27,16 @@ var current_level = ""
 ## Progression
 var wand_level = 1
 
-#var playing_level_01 = false
-#var playing_level_02 = false
-#var playing_level_03 = false
-#
-#var level_01_complete = false
-#var level_02_complete = false
-#var level_03_complete = false
-
 ## Win Conditions
-var player_embarked = false
 var fuel_level = 0
 var star_found = false
 var book_found = false
 var fuel_full = false
 
 var level_complete = false # fuel cheio e star e book pegos = level complete() - level complete false
+
+## Debug
+@onready var state_checker_timer = $StateCheckerTimer
 
 ## Cutscenes
 
@@ -49,6 +46,10 @@ const LEVEL_01 = preload("res://Scenes/Level01.tscn")
 const LEVEL_02 = preload("res://Scenes/Level02.tscn")
 const LEVEL_03 = preload("res://Scenes/Level03.tscn")
 
+
+
+
+
 ## UI toggles
 @onready var story = $CanvasLayer/Story
 @onready var main_menu = $CanvasLayer/MainMenu
@@ -56,50 +57,44 @@ const LEVEL_03 = preload("res://Scenes/Level03.tscn")
 
 @onready var audio_manager: Node2D
 
-
 func get_current_state() -> int:
 	return current_state
 
 func _ready():
-	player = get_tree().get_first_node_in_group("player")
-	#audio_manager = get_tree().get_first_node_in_group("audiomanager")
-	#audio_manager.play_music()
+	state_checker_timer.start()
 	story.hide()
 	level_interface.hide()
 	enter_state(current_state)
-
-
 	
 func enter_state(state):
 	match state:
 		States.MAINMENU:
-			print(current_state)
+			print(" enter state main menu")
 			enter_main_menu()
 		States.BRIEFING:
-			print(current_state)
+			print("enter state briefing")
 			enter_briefing()
 		States.BOOK:
-			print(current_state)
+			print("enter state book")
 			enter_book()
 		States.LOADING:
-			print(current_state)
+			print("enter state loading")
 			enter_loading()
 		States.LEVEL01:
-			print(current_state)
+			print("enter state level 01")
 			enter_level_01()
 		States.LEVEL02:
-			print(current_state)
+			print("enter state level 02")
 			enter_level_02()
 		States.LEVEL03:
-			print(current_state)
+			print("enter state level 03")
 			enter_level_03()
 		States.GAMEOVER:
-			print(current_state)
+			print("enter state game over")
 			enter_gameover()
 		States.END:
-			print(current_state)
+			print("enter state end")
 			enter_end()
-
 			
 func exit_state(state):
 	match state:
@@ -119,43 +114,34 @@ func exit_state(state):
 			exit_gameover()
 		States.END:
 			exit_end()
-
 			
 func change_state(new_state):
 	exit_state(current_state)
 	current_state = new_state
 	enter_state(current_state)
-	
-			
-
-
 
 func enter_main_menu():
 	main_menu.show()
 	story.hide()
 	level_interface.hide()
 
-
 func enter_briefing():
 	main_menu.hide()
 	story.show()
 	level_interface.hide()
-	
 	get_tree().change_scene_to_file("res://Scenes/briefing.tscn")
 
 func exit_briefing():
 	story.hide()
 	
-
 func enter_book():
 	main_menu.hide()
+	level_interface.hide()
 	story.show()
-	
 	
 func exit_book():
 	main_menu.hide()
 	story.show()
-
 
 func enter_loading():
 	main_menu.hide()
@@ -167,6 +153,7 @@ func exit_loading():
 	story.show()
 	
 func enter_level_01():
+	current_level = "res://Scenes/Level01.tscn"
 	main_menu.hide()
 	level_interface.show()
 	get_tree().change_scene_to_file("res://Scenes/Level01.tscn")
@@ -178,52 +165,57 @@ func exit_level_01():
 	# Additional cleanup for level 01 state
 
 func enter_level_02():
+	current_level = "res://Scenes/Level02.tscn"
 	main_menu.hide()
+	level_interface.show()
 	get_tree().change_scene_to_file("res://Scenes/Level02.tscn")
 
-
 func exit_level_02():
-	main_menu.hide()
-
+	level_interface.hide()
+	reset_finds()
 
 func enter_level_03():
+
+	main_menu.hide()
+	level_interface.show()
+	current_level = "res://Scenes/Level03.tscn"
 	get_tree().change_scene_to_file("res://Scenes/Level03.tscn")
 
 func exit_level_03():
-	# Cleanup for level 03
-	pass
+	level_interface.hide()
+	reset_finds()
 
 func enter_gameover():
-	# Setup for game over state
-	pass
+	get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 
 func exit_gameover():
 	# Cleanup for game over state
 	pass
 
 func enter_end():
-	# Setup for end state
-	pass
+	get_tree().change_scene_to_file("res://Scenes/ending.tscn")
 
 func exit_end():
 	# Cleanup for end state
 	pass
 
 
-
 func _on_start_game_pressed():
 	change_state(States.BRIEFING)
 
 func _on_level_01_completed():
+	
 	## TODO pass thourhg book scene
 	change_state(States.LEVEL02)
 
 func _on_level_02_completed():
 	## TODO pass thourhg book scene
+	print("can go to level 03")
 	change_state(States.LEVEL03)
 
 func _on_level_03_completed():
 	## TODO pass thourhg book scene
+	print("can go to end")
 	change_state(States.END)
 
 func _on_gameover():
@@ -234,7 +226,18 @@ func _on_quit_pressed():
 
 
 func _process(delta):
-	pass
+	player = get_tree().get_first_node_in_group("player")
+	# check if player is aborad and level complete
+	if player:
+		if player.player_embarked and level_complete:
+			print ("passou fase")
+			if current_level == "res://Scenes/Level01.tscn":
+				_on_level_01_completed()
+			elif current_level == "res://Scenes/Level02.tscn":
+				_on_level_02_completed()
+			elif current_level == "res://Scenes/Level03.tscn":
+				_on_level_03_completed()
+
 	## TODO if input esc - go to menu
 
 ## VFX
@@ -266,30 +269,47 @@ func _on_item_picked(item_type: String):
 			
 func _update_fuel_bar():
 	fuel_level += 1
-	prints("fuel collected", fuel_level)
+	#prints("fuel collected", fuel_level)
 	if fuel_level == 10:
 		fuel_full = true
-		prints("tanque cheio")
+		#prints("tanque cheio")
+	check_level_complete()
 
 func _collect_red_mineral():
 	wand_level += 1
-	print("red min collected")
+	## TODO display label powerup
+	print("wand level: " + str(wand_level))
 	
 func _collect_star_fragment():
+	check_level_complete()
 	star_found = true
 
 func _collect_book():
+	check_level_complete()
 	book_found = true
 	
 func reset_finds():
-	#player.hitpoints = player.max_hitpoints
+	level_complete = false
 	star_found = false
 	book_found = false
 	fuel_level = 0
 
 func retry_level():
-	if current_level != "":
 		get_tree().change_scene_to_file(current_level)
-	else:
-		print("No level to retry")
 
+
+func check_level_complete():
+	if fuel_full and book_found and star_found:
+		level_complete = true
+		#print("level complete")
+	
+
+
+func _on_state_checker_timer_timeout():
+	#print("state check")
+	player = get_tree().get_first_node_in_group("player")
+	#print(player)
+	if player:
+		#print("level complete: " + str(level_complete))
+		#print("player emarked: " + str(player.player_embarked))
+		state_checker_timer.start()

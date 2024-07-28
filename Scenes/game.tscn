@@ -1,10 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfww2l1c746yp"]
+[gd_scene load_steps=17 format=3 uid="uid://dfww2l1c746yp"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_dgi2b"]
 [ext_resource type="Script" path="res://addons/post_processing/node/post_process.gd" id="7_c55rf"]
 [ext_resource type="Script" path="res://addons/post_processing/resource/post_processing_configuration.gd" id="8_04cba"]
+[ext_resource type="Script" path="res://Scripts/StarIcon.gd" id="8_5ctkv"]
 [ext_resource type="Script" path="res://Scripts/FuelBar.gd" id="9_a1136"]
+[ext_resource type="Texture2D" uid="uid://bggt0kft3satt" path="res://Assets/Sprites/Collectibles/star.png" id="9_dagl0"]
+[ext_resource type="Script" path="res://Scripts/BookIcon.gd" id="10_funm8"]
 [ext_resource type="Theme" uid="uid://c78hinwaisvpk" path="res://Assets/Themes/GatoGelatoTheme.tres" id="10_l2cwi"]
+[ext_resource type="Texture2D" uid="uid://cqp1vyypsbou8" path="res://Assets/Sprites/Collectibles/book.png" id="11_tqml5"]
 [ext_resource type="Script" path="res://Scripts/HPBar.gd" id="16_ciyej"]
 [ext_resource type="Texture2D" uid="uid://cy2en4aspprjm" path="res://Assets/Sprites/UI/temp_heart.jpg" id="17_1tl3n"]
 [ext_resource type="Texture2D" uid="uid://tj78uy1pqfen" path="res://Assets/Sprites/UI/New Project.jpg" id="18_db26j"]
@@ -113,8 +117,11 @@ size_flags_vertical = 6
 [node name="HPBar" type="HBoxContainer" parent="CanvasLayer/LevelInterface" groups=["hpbar"]]
 z_index = 3
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 16.0
+offset_top = 15.0
+offset_right = 476.0
+offset_bottom = 158.0
+scale = Vector2(0.372867, 0.372867)
 theme_override_constants/separation = 5
 script = ExtResource("16_ciyej")
 
@@ -148,53 +155,85 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_left = -35.0
+offset_top = 15.0
+offset_right = 5.0
+offset_bottom = 55.0
 grow_horizontal = 2
 script = ExtResource("9_a1136")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/LevelInterface/FuelBar"]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
-offset_left = -228.0
-offset_right = 272.0
-offset_bottom = 36.0
+offset_left = 245.0
+offset_right = 595.0
+offset_bottom = 25.0
 pivot_offset = Vector2(250, 0)
 theme = ExtResource("10_l2cwi")
 max_value = 10.0
 step = 1.0
-value = 5.0
+
+[node name="Label" type="Label" parent="CanvasLayer/LevelInterface/FuelBar/ProgressBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 39.0
+offset_right = 144.0
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Combustível"
+horizontal_alignment = 1
 
 [node name="StarIcon" type="Control" parent="CanvasLayer/LevelInterface"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 574.0
+offset_top = 15.0
+offset_right = 614.0
+offset_bottom = 55.0
+script = ExtResource("8_5ctkv")
 
 [node name="Star" type="TextureRect" parent="CanvasLayer/LevelInterface/StarIcon"]
+visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 752.0
+offset_bottom = 732.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("9_dagl0")
 
-[node name="StarOutline" type="TextureRect" parent="CanvasLayer/LevelInterface/StarIcon"]
+[node name="Star2" type="TextureRect" parent="CanvasLayer/LevelInterface/StarIcon"]
+modulate = Color(1, 1, 1, 0.223529)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 752.0
+offset_bottom = 732.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("9_dagl0")
 
 [node name="BookIcon" type="Control" parent="CanvasLayer/LevelInterface"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 519.0
+offset_top = 15.0
+offset_right = 559.0
+offset_bottom = 55.0
+script = ExtResource("10_funm8")
 
 [node name="Book" type="TextureRect" parent="CanvasLayer/LevelInterface/BookIcon"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("11_tqml5")
 
 [node name="BookOutline" type="TextureRect" parent="CanvasLayer/LevelInterface/BookIcon"]
+modulate = Color(1, 1, 1, 0.223529)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.110232, 0.110232)
+texture = ExtResource("11_tqml5")
 
 [node name="Control" type="Control" parent="CanvasLayer/LevelInterface"]
 anchors_preset = 0
@@ -262,6 +301,11 @@ camera_attributes = SubResource("CameraAttributesPractical_hac0v")
 [node name="ViewportTarget" type="Marker2D" parent="."]
 position = Vector2(577, 325)
 
+[node name="StateCheckerTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="pressed" from="CanvasLayer/MainMenu/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="QuakeTimer" to="." method="_on_quake_timer_timeout"]
+[connection signal="timeout" from="StateCheckerTimer" to="." method="_on_state_checker_timer_timeout"]

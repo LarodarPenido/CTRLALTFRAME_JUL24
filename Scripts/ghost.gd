@@ -34,6 +34,7 @@ var chase_timer = 0.0
 @export var stunned: Timer
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var ghost_stun = $Ghost_stun
 
 
 @export var chase: Timer
@@ -60,24 +61,23 @@ func _ready():
 	
 	# Assign random multipliers for personality
 	speed_multiplier = randf_range(0.5, 2)
-	chase_time_multiplier = randf_range(0.5, 2)
+	chase_time_multiplier = randf_range(0.5, 1.2)
 	stun_time_multiplier = randf_range(0.8, 1.2)
 	
 	# Find the player
 	player = get_tree().get_first_node_in_group("player")
-	
- ## TODO connect singal		# Connect signals
-	#player.connect("shot", self, "_on_player_shot")
-	#player.connect("catnip_touch", self, "_on_player_catnip_touch")
+
 
 func _process(delta):
 	match state:
 		States.WANDER:
+			ghost_stun.hide()
 			audio_manager.play_sleep()
 			animated_sprite_2d.self_modulate.a = 1
 			collision_shape_2d.disabled = false
 			_wander(delta)
 		States.CHASE:
+			ghost_stun.hide()
 			audio_manager.play_haunt()
 			animated_sprite_2d.self_modulate.a = 1
 			collision_shape_2d.disabled = false
@@ -86,12 +86,15 @@ func _process(delta):
 			audio_manager.play_stun()
 			_stunned(delta)
 			collision_shape_2d.disabled = true
-			animated_sprite_2d.self_modulate.a = 0.2
+			animated_sprite_2d.self_modulate.a = 0.0
+			ghost_stun.show()
 		States.FOLLOW:
+			ghost_stun.hide()
 			animated_sprite_2d.self_modulate.a = 1
 			collision_shape_2d.disabled = false
 			_follow(delta)
 		States.BANISHED:
+			ghost_stun.hide()
 			audio_manager.play_banished()
 
 	for i in get_slide_collision_count():
@@ -108,8 +111,6 @@ func _physics_process(delta):
 	match state:
 		States.WANDER, States.CHASE:
 			move_and_slide()
-
-
 
 func _wander(delta):
 	
@@ -162,3 +163,7 @@ func _on_wander_timeout():
 
 	choose_wander_direction()
 	wander_timer.start(randf_range(3.0, 5.0))
+
+
+func _on_can_damage_timer_timeout():
+	can_damage = true

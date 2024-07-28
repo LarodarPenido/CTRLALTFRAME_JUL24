@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://tiggov82d662"]
+
+[ext_resource type="Theme" uid="uid://c78hinwaisvpk" path="res://Assets/Themes/GatoGelatoTheme.tres" id="1_5kkhh"]
+[ext_resource type="Script" path="res://Scripts/game_over.gd" id="2_jpq8s"]
+[ext_resource type="Texture2D" uid="uid://cqc0ir8oh3dw6" path="res://Assets/Sprites/Cutscenes/temp_game_over.jpg" id="3_n8tqf"]
+
+[node name="Ending" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5kkhh")
+script = ExtResource("2_jpq8s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1150.8
+offset_bottom = 642.865
+texture = ExtResource("3_n8tqf")
+expand_mode = 1
+
+[node name="RetryButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 564.0
+offset_right = 464.0
+offset_bottom = 600.0
+text = "Tentar Outra Vez"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 745.0
+offset_top = 564.0
+offset_right = 1107.0
+offset_bottom = 600.0
+text = "Menu Principal"
+
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
