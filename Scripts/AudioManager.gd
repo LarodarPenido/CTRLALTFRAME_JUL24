@@ -17,15 +17,35 @@ extends Node2D
 @onready var ghost_stun = $Enemies/GhostStun
 @onready var ghost_banished = $Enemies/GhostBanished
 
+@export var music: AudioStreamPlayer
+@export var catnip_music: AudioStreamPlayer
 
 
 @onready var spell: Node2D
 
 func _ready():
 	
-	# This is just a placeholder to ensure the node is in the scene
-	pass
+	play_music()
 
+func play_music():
+	if music and catnip_music:
+		if catnip_music.is_playing:
+			catnip_music.stop()
+			music.play()
+			#print("music should be playing")
+		else:
+			music.play()
+			#print("music should be playing")
+
+func play_catnip_music():
+	if music and catnip_music:
+		if music.is_playing:
+			music.stop()
+			catnip_music.play()
+			#print("music should be playing")
+		else:
+			catnip_music.play()
+			#print("music should be playing")
 
 func _on_spell_hit():
 		spell_hit.play()

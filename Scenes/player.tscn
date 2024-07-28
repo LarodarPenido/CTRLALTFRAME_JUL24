@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cihlctj3okwe2"]
+[gd_scene load_steps=17 format=3 uid="uid://cihlctj3okwe2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_yxmrb"]
 [ext_resource type="Texture2D" uid="uid://fwtwkfd2lkuk" path="res://Assets/Sprites/Gatolomeu.png" id="2_acw2h"]
 [ext_resource type="Texture2D" uid="uid://hf8coewesiwd" path="res://Assets/Sprites/VFX/catnip_aura.png" id="2_lrcv2"]
 [ext_resource type="Texture2D" uid="uid://dqxw35enuetg0" path="res://Assets/Sprites/VFX/Glow (1).png" id="2_u5tsk"]
 [ext_resource type="PackedScene" uid="uid://12wxamserfhi" path="res://Scenes/wand.tscn" id="3_sc40d"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="6_x82ba"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_5exeb"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_ep6i1"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nbqoj"]
 particle_flag_align_y = true
@@ -61,6 +64,12 @@ animations = [{
 radius = 8.0
 height = 32.0
 
+[sub_resource type="Resource" id="Resource_uguat"]
+script = ExtResource("7_5exeb")
+duration = 1.0
+transition = 0
+ease = 2
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 12
 script = ExtResource("1_yxmrb")
@@ -109,12 +118,28 @@ rotation = 0.872665
 position = Vector2(21.535, -0.165)
 
 [node name="CatnipPower" type="Timer" parent="."]
+one_shot = true
 
 [node name="InvincibleTimer" type="Timer" parent="."]
 
 [node name="DyingTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="CamTarget" type="Marker2D" parent="." groups=["playercamtarget"]]
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+script = ExtResource("6_x82ba")
+follow_mode = 2
+follow_target = NodePath("../CamTarget")
+zoom = Vector2(2, 2)
+tween_resource = SubResource("Resource_uguat")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("8_ep6i1")
 
 [connection signal="timeout" from="CatnipPower" to="." method="_on_catnip_power_timeout"]
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]

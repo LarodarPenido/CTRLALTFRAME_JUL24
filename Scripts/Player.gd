@@ -51,7 +51,7 @@ func _on_item_picked(item_type: String):
 			_activate_catnip_powerup()
 	
 func _activate_catnip_powerup():
-	# TODO play catnip sound
+	audio_manager.play_catnip_music()
 	catnip_power = true
 	speed = 450
 	acceleration = 3
@@ -69,33 +69,36 @@ func _activate_catnip_powerup():
 func _process(delta):
 	if catnip_power:
 		catnip_aura.self_modulate.a = catnip_power_timer.time_left
+		## TODO
 
 func get_input():
+	
 	input_direction = Input.get_vector("left", "right", "up", "down")
 	
 
 func _physics_process(delta):
-	
-	var mouse_pos = get_global_mouse_position()
-	
-	get_input()
-	
-		# Apply acceleration
-	var target_speed = input_direction * speed
-	current_speed = current_speed.lerp(target_speed, acceleration * delta)  
-	velocity = current_speed
-	
-	# Apply deceleration when no input
-	if input_direction == Vector2.ZERO:
-		current_speed = current_speed.lerp(Vector2.ZERO, acceleration * delta) 
+	var current_state = game.get_current_state()
+	if current_state in [game.States.LEVEL01, game.States.LEVEL02, game.States.LEVEL03]:
+		var mouse_pos = get_global_mouse_position()
+		
+		get_input()
+		
+			# Apply acceleration
+		var target_speed = input_direction * speed
+		current_speed = current_speed.lerp(target_speed, acceleration * delta)  
 		velocity = current_speed
-	
-	move_and_slide()
-	
-	if mouse_pos.x < global_position.x:
-		player_sprite.flip_h = true 
-	elif mouse_pos.x > global_position.x:
-		player_sprite.flip_h = false
+		
+		# Apply deceleration when no input
+		if input_direction == Vector2.ZERO:
+			current_speed = current_speed.lerp(Vector2.ZERO, acceleration * delta) 
+			velocity = current_speed
+		
+		move_and_slide()
+		
+		if mouse_pos.x < global_position.x:
+			player_sprite.flip_h = true 
+		elif mouse_pos.x > global_position.x:
+			player_sprite.flip_h = false
 
 
 func take_damage():
@@ -123,7 +126,7 @@ func _on_catnip_power_timeout():
 	deactivate_catnip_powerup()
 
 func deactivate_catnip_powerup():
-
+	audio_manager.play_music()
 	catnip_aura.hide()
 	catnip_power = false
 	speed = 300

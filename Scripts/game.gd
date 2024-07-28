@@ -19,6 +19,7 @@ END,
 }
 
 var current_state = States.MAINMENU
+var current_level = ""
 
 ## Progression
 var wand_level = 1
@@ -53,33 +54,52 @@ const LEVEL_03 = preload("res://Scenes/Level03.tscn")
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var level_interface = $CanvasLayer/LevelInterface
 
+@onready var audio_manager: Node2D
+
+
+func get_current_state() -> int:
+	return current_state
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
+	#audio_manager = get_tree().get_first_node_in_group("audiomanager")
+	#audio_manager.play_music()
 	story.hide()
 	level_interface.hide()
 	enter_state(current_state)
+
+
 	
 func enter_state(state):
 	match state:
 		States.MAINMENU:
+			print(current_state)
 			enter_main_menu()
 		States.BRIEFING:
+			print(current_state)
 			enter_briefing()
 		States.BOOK:
+			print(current_state)
 			enter_book()
 		States.LOADING:
+			print(current_state)
 			enter_loading()
 		States.LEVEL01:
+			print(current_state)
 			enter_level_01()
 		States.LEVEL02:
+			print(current_state)
 			enter_level_02()
 		States.LEVEL03:
+			print(current_state)
 			enter_level_03()
 		States.GAMEOVER:
+			print(current_state)
 			enter_gameover()
 		States.END:
+			print(current_state)
 			enter_end()
+
 			
 func exit_state(state):
 	match state:
@@ -105,8 +125,11 @@ func change_state(new_state):
 	exit_state(current_state)
 	current_state = new_state
 	enter_state(current_state)
+	
 			
-			
+
+
+
 func enter_main_menu():
 	main_menu.show()
 	story.hide()
@@ -259,9 +282,14 @@ func _collect_book():
 	book_found = true
 	
 func reset_finds():
-	player.hitpoints = player.max_hitpoints
+	#player.hitpoints = player.max_hitpoints
 	star_found = false
 	book_found = false
 	fuel_level = 0
 
+func retry_level():
+	if current_level != "":
+		get_tree().change_scene_to_file(current_level)
+	else:
+		print("No level to retry")
 

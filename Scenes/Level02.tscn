@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://0aqy0b0yyvri"]
+[gd_scene load_steps=22 format=3 uid="uid://0aqy0b0yyvri"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_6aveb"]
 [ext_resource type="PackedScene" uid="uid://b0domlpygt3gt" path="res://Scenes/ship.tscn" id="2_qmugw"]
@@ -11,10 +11,6 @@
 [ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="9_t5xq1"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator_settings.gd" id="10_dal0d"]
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="11_hgm7t"]
-[ext_resource type="PackedScene" uid="uid://cihlctj3okwe2" path="res://Scenes/player.tscn" id="12_cp5tt"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="13_a7svd"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="14_p7cn3"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="15_rp7qb"]
 [ext_resource type="PackedScene" uid="uid://cgceftjc8dnac" path="res://Scenes/ghost.tscn" id="16_6m8tk"]
 [ext_resource type="PackedScene" uid="uid://cb7qsha3gosur" path="res://collectibles_manager.tscn" id="17_vi4by"]
 
@@ -78,18 +74,6 @@ Vector2i(2, 2): 0.5,
 Vector2i(3, 3): 0.1
 }
 modifiers = Array[Resource("res://addons/gaea/modifiers/2D/modifier_2d.gd")]([SubResource("Resource_k7hg8")])
-
-[sub_resource type="Resource" id="Resource_p31rw"]
-script = ExtResource("15_rp7qb")
-duration = 1.0
-transition = 0
-ease = 2
-
-[sub_resource type="Resource" id="Resource_eliit"]
-script = ExtResource("15_rp7qb")
-duration = 1.0
-transition = 0
-ease = 2
 
 [node name="Level01" type="Node2D"]
 script = ExtResource("1_6aveb")
@@ -192,39 +176,6 @@ script = ExtResource("11_hgm7t")
 tile_map = NodePath("../TileMap")
 generator = NodePath("../WalkerGenerator")
 
-[node name="Player" parent="." instance=ExtResource("12_cp5tt")]
-position = Vector2(0, -168)
-
-[node name="Cam_Target_Player" type="Marker2D" parent="Player"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -168)
-zoom = Vector2(2, 2)
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("13_a7svd")
-
-[node name="Player_Pcam" type="Node2D" parent="Camera2D" node_paths=PackedStringArray("follow_target")]
-script = ExtResource("14_p7cn3")
-priority = 1
-follow_mode = 2
-follow_target = NodePath("../../Player/Cam_Target_Player")
-zoom = Vector2(2, 2)
-tween_resource = SubResource("Resource_p31rw")
-dead_zone_width = 0.112
-dead_zone_height = 0.125
-draw_limits = true
-
-[node name="Ship_Pcam" type="Node2D" parent="Camera2D" node_paths=PackedStringArray("follow_targets")]
-position = Vector2(0, 84)
-script = ExtResource("14_p7cn3")
-follow_mode = 3
-follow_targets = [NodePath("../../Player/Cam_Target_Player"), NodePath("../../Cam_Target_Ship")]
-tween_resource = SubResource("Resource_eliit")
-draw_limits = true
-
-[node name="Cam_Target_Ship" type="Marker2D" parent="."]
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Node2D" parent="Enemies" instance=ExtResource("16_6m8tk")]
@@ -274,6 +225,3 @@ wander_timer = NodePath("../Node2D3/Wander")
 [node name="CollectiblesManager" parent="." groups=["CollectiblesManager"] instance=ExtResource("17_vi4by")]
 
 [node name="Bounds" type="Node2D" parent="."]
-
-[editable path="Player"]
-[editable path="Player/Node2D"]

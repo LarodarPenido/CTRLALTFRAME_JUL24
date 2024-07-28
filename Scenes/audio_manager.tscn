@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cwy7ly2qoj4yq"]
+[gd_scene load_steps=27 format=3 uid="uid://cwy7ly2qoj4yq"]
 
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="1_dm0en"]
 [ext_resource type="AudioStream" uid="uid://2nb26u6yw7h8" path="res://Assets/Sounds/Excavation/rock-destroy-6409.mp3" id="2_y0xgk"]
@@ -6,7 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://by2cd46gi657m" path="res://Assets/Sounds/Excavation/RockHit_SFX Edit 1 Export 1 Track 1 Render 0.mp3" id="4_7iv4g"]
 [ext_resource type="AudioStream" uid="uid://cbjchwsjggnd1" path="res://Assets/Sounds/Excavation/RockHit_SFX Edit 1 Export 1 Track 2 Render 0.mp3" id="5_lmy10"]
 [ext_resource type="AudioStream" uid="uid://cvafaq50rdxl6" path="res://Assets/Sounds/Excavation/RockHit_SFX Edit 1 Export 1 Track 3 Render 0.mp3" id="6_mgijm"]
+[ext_resource type="AudioStream" uid="uid://ccwhfrthywaif" path="res://Assets/Sounds/Music/Pleasant Creek Loop.wav" id="7_d17nf"]
 [ext_resource type="AudioStream" uid="uid://bm1bcvdosd7sl" path="res://Assets/Sounds/Ghost/ghost-woo-135543.mp3" id="7_llj8h"]
+[ext_resource type="AudioStream" uid="uid://bvmremutdr4ei" path="res://Assets/Sounds/Music/Riverside Ride Short Loop.wav" id="7_vc0yr"]
 [ext_resource type="AudioStream" uid="uid://dfw4ipa4goc3s" path="res://Assets/Sounds/Ghost/classic-ghost-sound-95773.mp3" id="8_464v1"]
 [ext_resource type="AudioStream" uid="uid://bvlx2on1j7y2n" path="res://Assets/Sounds/Ghost/ghost-voice-halloween-moany-ghost-168411.mp3" id="9_rxhsq"]
 [ext_resource type="AudioStream" uid="uid://bkji1m4122ghi" path="res://Assets/Sounds/Ghost/sad-ghost-40303.mp3" id="10_5lad8"]
@@ -48,6 +50,16 @@ stream_1/weight = 1.0
 stream_2/stream = ExtResource("6_mgijm")
 stream_2/weight = 1.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vik24"]
+streams_count = 1
+stream_0/stream = ExtResource("7_d17nf")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hl0x8"]
+streams_count = 1
+stream_0/stream = ExtResource("7_vc0yr")
+stream_0/weight = 1.0
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vblwh"]
 random_pitch = 1.63
 streams_count = 1
@@ -76,8 +88,10 @@ streams_count = 1
 stream_0/stream = ExtResource("12_7a3oi")
 stream_0/weight = 1.0
 
-[node name="AudioManager" type="Node2D" groups=["audiomanager"]]
+[node name="AudioManager" type="Node2D" node_paths=PackedStringArray("music", "catnip_music") groups=["audiomanager"]]
 script = ExtResource("1_dm0en")
+music = NodePath("BGM/Music")
+catnip_music = NodePath("BGM/CatnipMusic")
 
 [node name="RockSounds" type="Node2D" parent="."]
 
@@ -113,6 +127,12 @@ pitch_scale = 1.08
 [node name="Ambience" type="Node2D" parent="."]
 
 [node name="BGM" type="Node2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="BGM"]
+stream = SubResource("AudioStreamRandomizer_vik24")
+
+[node name="CatnipMusic" type="AudioStreamPlayer" parent="BGM"]
+stream = SubResource("AudioStreamRandomizer_hl0x8")
 
 [node name="Enemies" type="Node2D" parent="."]
 

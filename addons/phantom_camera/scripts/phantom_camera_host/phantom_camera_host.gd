@@ -181,10 +181,11 @@ func _ready() -> void:
 
 
 func _check_camera_host_amount() -> void:
-	if _phantom_camera_manager.get_phantom_camera_hosts().size() > 1:
-		_multiple_pcam_hosts = true
-	else:
-		_multiple_pcam_hosts = false
+	pass
+	#if _phantom_camera_manager.get_phantom_camera_hosts().size() > 1:
+		#_multiple_pcam_hosts = true
+	#else:
+		#_multiple_pcam_hosts = false
 
 
 func _assign_new_active_pcam(pcam: Node) -> void:

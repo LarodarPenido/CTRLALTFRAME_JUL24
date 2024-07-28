@@ -7,7 +7,9 @@ extends Node2D
 ## collectibles left display
 
 var player: CharacterBody2D
+
 var game: Node2D
+
 
 #const LEVEL_02 = preload("res://Scenes/Level02.tscn")
 
@@ -21,11 +23,12 @@ func _ready():
 	game = get_tree().get_first_node_in_group("game")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
+
 	if player.player_embarked and game.fuel_full:
 		advance_level()
 		
 
 func advance_level():
-	pass # TODO
+	game.change_state(game.States.BOOK)

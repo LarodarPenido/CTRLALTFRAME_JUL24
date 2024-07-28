@@ -1,5 +1,7 @@
 extends Control
 
+@onready var game = get_tree().get_root().get_node("Game")
+
 # TODO play sound ghost game over
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +14,7 @@ func _process(delta):
 
 
 func _on_retry_button_pressed():
-	pass # Replace with function body.
+	game.retry_level()
 
 
 func _on_quit_button_pressed():
