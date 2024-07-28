@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://dl6w01q1a361h"]
+
+[ext_resource type="Script" path="res://Scripts/ArrivalControl.gd" id="1_ra3c5"]
+[ext_resource type="Texture2D" uid="uid://b3pumsh3efjeu" path="res://Assets/Sprites/Cutscenes/Planet 1.jpg" id="2_n10ws"]
+[ext_resource type="Script" path="res://Scripts/Arrival.gd" id="3_8njo0"]
+[ext_resource type="Texture2D" uid="uid://djybb0kfsj20t" path="res://Assets/Sprites/Ship/IMG_0276.PNG" id="4_ukdmc"]
+[ext_resource type="Texture2D" uid="uid://bj18qx0bvjiai" path="res://Assets/Sprites/Ship/IMG_0275.PNG" id="5_i57iy"]
+[ext_resource type="Texture2D" uid="uid://cuirwvjl5sens" path="res://Assets/Sprites/Ship/IMG_0274.PNG" id="6_wmxu3"]
+[ext_resource type="Texture2D" uid="uid://dogmbajsj3aa2" path="res://Assets/Sprites/Ship/IMG_0273.PNG" id="7_u5byx"]
+[ext_resource type="Texture2D" uid="uid://dk8id7f6cykwv" path="res://Assets/Sprites/Ship/IMG_0262.PNG" id="8_bsisy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oong5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ukdmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_i57iy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wmxu3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_u5byx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bsisy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_u5byx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wmxu3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_i57iy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 25.0
+}]
+
+[node name="CenterContainer" type="CenterContainer"]
+z_index = 500
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_ra3c5")
+
+[node name="Arrival" type="Sprite2D" parent="."]
+z_index = 3126
+position = Vector2(-232, -96)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_n10ws")
+script = ExtResource("3_8njo0")
+
+[node name="ShipFlying" type="AnimatedSprite2D" parent="Arrival"]
+position = Vector2(-336, -112)
+scale = Vector2(0.123635, 0.123635)
+sprite_frames = SubResource("SpriteFrames_oong5")
+autoplay = "default"
+frame_progress = 0.491567

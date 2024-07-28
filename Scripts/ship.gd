@@ -20,9 +20,9 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	player.player_embarked = true
-	print("aboard")
+	#print("aboard")
 
 
 func _on_area_2d_body_exited(body):
 	player.player_embarked = false
-	print("outboard")
+	#print("outboard")

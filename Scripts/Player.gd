@@ -54,6 +54,7 @@ func _ready():
 	game = get_tree().get_first_node_in_group("game")
 	audio_manager = get_tree().get_first_node_in_group("audiomanager")
 	hp_bar = get_tree().get_first_node_in_group("hpbar")
+	audio_manager.play_music()
 	
 func connect_collectible(item):
 	item.connect("item_picked", Callable(self, "_on_item_picked"))

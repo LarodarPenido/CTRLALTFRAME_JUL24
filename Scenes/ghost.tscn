@@ -71,7 +71,7 @@ shape = SubResource("CapsuleShape2D_wffmb")
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_hht7u")
 autoplay = "default"
-frame_progress = 0.77272
+frame_progress = 0.34888
 
 [node name="Ghost_stun" type="AnimatedSprite2D" parent="."]
 visible = false

@@ -15,7 +15,9 @@ BRIEFING,
 BOOK,
 LOADING,
 LEVEL01,
+TELESCOPE01,
 LEVEL02,
+TELESCOPE02,
 LEVEL03,
 GAMEOVER,
 END,
@@ -39,16 +41,16 @@ var level_complete = false # fuel cheio e star e book pegos = level complete() -
 @onready var state_checker_timer = $StateCheckerTimer
 
 ## Cutscenes
+## Level 01 Begin
+@onready var arrival_01 = $CanvasLayer/Story/Arrival01
+
+
 
 
 ## Levels
 const LEVEL_01 = preload("res://Scenes/Level01.tscn")
 const LEVEL_02 = preload("res://Scenes/Level02.tscn")
 const LEVEL_03 = preload("res://Scenes/Level03.tscn")
-
-
-
-
 
 ## UI toggles
 @onready var story = $CanvasLayer/Story
@@ -83,9 +85,15 @@ func enter_state(state):
 		States.LEVEL01:
 			print("enter state level 01")
 			enter_level_01()
+		States.TELESCOPE01:
+			print("enter state telescope1")
+			enter_telescope_01()
 		States.LEVEL02:
 			print("enter state level 02")
 			enter_level_02()
+		States.TELESCOPE02:
+			print("enter state telescope2")
+			enter_telescope_02()
 		States.LEVEL03:
 			print("enter state level 03")
 			enter_level_03()
@@ -98,6 +106,9 @@ func enter_state(state):
 			
 func exit_state(state):
 	match state:
+		
+		States.MAINMENU:
+			exit_main_menu()
 		States.BRIEFING:
 			exit_briefing()
 		States.BOOK:
@@ -106,8 +117,12 @@ func exit_state(state):
 			exit_loading()
 		States.LEVEL01:
 			exit_level_01()
+		States.TELESCOPE01:
+			exit_telescope_01()
 		States.LEVEL02:
 			exit_level_02()
+		States.TELESCOPE02:
+			exit_telescope_02()
 		States.LEVEL03:
 			exit_level_03()
 		States.GAMEOVER:
@@ -124,7 +139,12 @@ func enter_main_menu():
 	main_menu.show()
 	story.hide()
 	level_interface.hide()
-
+	
+func exit_main_menu():
+	main_menu.hide()
+	story.hide()
+	level_interface.hide()
+	
 func enter_briefing():
 	main_menu.hide()
 	story.show()
@@ -153,6 +173,7 @@ func exit_loading():
 	story.show()
 	
 func enter_level_01():
+	arrival_01.show()
 	current_level = "res://Scenes/Level01.tscn"
 	main_menu.hide()
 	level_interface.show()
@@ -163,8 +184,15 @@ func exit_level_01():
 	level_interface.hide()
 	reset_finds()
 	# Additional cleanup for level 01 state
+func enter_telescope_01():
+	
+	get_tree().change_scene_to_file("res://Scenes/telescope01.tscn")
+	
+func exit_telescope_01():
+	pass
 
 func enter_level_02():
+
 	current_level = "res://Scenes/Level02.tscn"
 	main_menu.hide()
 	level_interface.show()
@@ -173,6 +201,12 @@ func enter_level_02():
 func exit_level_02():
 	level_interface.hide()
 	reset_finds()
+
+func enter_telescope_02():
+	get_tree().change_scene_to_file("res://Scenes/telescope02.tscn")
+
+func exit_telescope_02():
+	pass
 
 func enter_level_03():
 
@@ -206,12 +240,12 @@ func _on_start_game_pressed():
 func _on_level_01_completed():
 	
 	## TODO pass thourhg book scene
-	change_state(States.LEVEL02)
+	change_state(States.TELESCOPE01)
 
 func _on_level_02_completed():
 	## TODO pass thourhg book scene
 	print("can go to level 03")
-	change_state(States.LEVEL03)
+	change_state(States.TELESCOPE02)
 
 func _on_level_03_completed():
 	## TODO pass thourhg book scene

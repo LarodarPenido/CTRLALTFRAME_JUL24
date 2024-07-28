@@ -53,18 +53,22 @@ polygon = PackedVector2Array(488, -72, 392, 16, 296, 80, 168, 120, 0, 160, -176,
 script = ExtResource("1_4yytn")
 
 [node name="EmptyShip" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_ia6gq")
 
 [node name="EmptyShipLanded" type="Sprite2D" parent="."]
 texture = ExtResource("2_30qg0")
 
 [node name="EmbarkedShip" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("3_x2cok")
 
 [node name="EmbarkedShipLanded" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("4_55ed1")
 
 [node name="ShipFlying" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, 224)
 sprite_frames = SubResource("SpriteFrames_641sd")
 frame_progress = 0.244537
@@ -76,6 +80,7 @@ position = Vector2(0, -176)
 shape = SubResource("RectangleShape2D_a8h8c")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 occluder = SubResource("OccluderPolygon2D_dbo6d")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

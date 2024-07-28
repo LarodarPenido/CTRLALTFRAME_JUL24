@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=3 uid="uid://halg1vhm3i04"]
+
+[ext_resource type="Script" path="res://Scripts/telescope01.gd" id="1_unoak"]
+[ext_resource type="Texture2D" uid="uid://vq4cs85lji2h" path="res://Assets/Sprites/Cutscenes/Planet 2.jpg" id="2_f73l3"]
+[ext_resource type="Texture2D" uid="uid://cutcb5dqvltpt" path="res://Assets/Sprites/Cutscenes/telescope.JPG" id="3_1awo1"]
+[ext_resource type="Texture2D" uid="uid://djybb0kfsj20t" path="res://Assets/Sprites/Ship/IMG_0276.PNG" id="3_qmmaf"]
+[ext_resource type="Texture2D" uid="uid://bj18qx0bvjiai" path="res://Assets/Sprites/Ship/IMG_0275.PNG" id="4_k561g"]
+[ext_resource type="Texture2D" uid="uid://cuirwvjl5sens" path="res://Assets/Sprites/Ship/IMG_0274.PNG" id="5_njtaa"]
+[ext_resource type="Texture2D" uid="uid://dogmbajsj3aa2" path="res://Assets/Sprites/Ship/IMG_0273.PNG" id="6_7wvjs"]
+[ext_resource type="Texture2D" uid="uid://dk8id7f6cykwv" path="res://Assets/Sprites/Ship/IMG_0262.PNG" id="7_72c8f"]
+[ext_resource type="Texture2D" uid="uid://dv40t26iunpxj" path="res://Assets/Sprites/Cutscenes/constM2.jpg" id="9_nf3jq"]
+[ext_resource type="Theme" uid="uid://c78hinwaisvpk" path="res://Assets/Themes/GatoGelatoTheme.tres" id="26_jp2vm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p4bb5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qmmaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k561g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_njtaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7wvjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_72c8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7wvjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_njtaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k561g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 25.0
+}]
+
+[node name="Telescope01" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_unoak")
+
+[node name="Control" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Container" type="Control" parent="Control"]
+layout_mode = 2
+
+[node name="Panel03" type="Sprite2D" parent="Control/Container"]
+position = Vector2(576, 324)
+texture = ExtResource("2_f73l3")
+
+[node name="ShipFlying" type="AnimatedSprite2D" parent="Control/Container/Panel03"]
+position = Vector2(-336, -112)
+scale = Vector2(0.123635, 0.123635)
+sprite_frames = SubResource("SpriteFrames_p4bb5")
+autoplay = "default"
+
+[node name="Avancar" type="Button" parent="Control/Container"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 32.0
+offset_right = 701.0
+offset_bottom = 68.0
+theme = ExtResource("26_jp2vm")
+text = "Explorar"
+
+[node name="Panel02" type="Sprite2D" parent="Control/Container"]
+position = Vector2(576, 324)
+texture = ExtResource("9_nf3jq")
+
+[node name="Panel01" type="Sprite2D" parent="Control/Container"]
+visible = false
+position = Vector2(576, 324)
+texture = ExtResource("3_1awo1")
+
+[node name="<-" type="Button" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 568.0
+offset_right = 173.0
+offset_bottom = 604.0
+theme = ExtResource("26_jp2vm")
+text = "<"
+
+[node name="->" type="Button" parent="."]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 568.0
+offset_right = 1060.0
+offset_bottom = 604.0
+theme = ExtResource("26_jp2vm")
+text = ">"
+
+[connection signal="pressed" from="Control/Container/Avancar" to="." method="_on_avancar_pressed"]
+[connection signal="pressed" from="<-" to="." method="_on_flip_back_pressed"]
+[connection signal="pressed" from="->" to="." method="_on_flip_forward_pressed"]

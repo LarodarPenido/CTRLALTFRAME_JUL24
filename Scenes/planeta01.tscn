@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://ic6fb1ot0d20"]
+
+[ext_resource type="Texture2D" uid="uid://b3pumsh3efjeu" path="res://Assets/Sprites/Cutscenes/Planet 1.jpg" id="1_fjifo"]
+[ext_resource type="Texture2D" uid="uid://djybb0kfsj20t" path="res://Assets/Sprites/Ship/IMG_0276.PNG" id="2_s2ume"]
+[ext_resource type="Texture2D" uid="uid://bj18qx0bvjiai" path="res://Assets/Sprites/Ship/IMG_0275.PNG" id="3_ryds8"]
+[ext_resource type="Texture2D" uid="uid://cuirwvjl5sens" path="res://Assets/Sprites/Ship/IMG_0274.PNG" id="4_mnl5j"]
+[ext_resource type="Texture2D" uid="uid://dogmbajsj3aa2" path="res://Assets/Sprites/Ship/IMG_0273.PNG" id="5_miu56"]
+[ext_resource type="Texture2D" uid="uid://dk8id7f6cykwv" path="res://Assets/Sprites/Ship/IMG_0262.PNG" id="6_kt7p8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ewyry"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s2ume")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ryds8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mnl5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_miu56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kt7p8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_miu56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mnl5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ryds8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 25.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_fjifo")
+
+[node name="ShipFlying" type="AnimatedSprite2D" parent="."]
+position = Vector2(224, 240)
+scale = Vector2(0.14699, 0.14699)
+sprite_frames = SubResource("SpriteFrames_ewyry")
+autoplay = "default"
+frame_progress = 0.850825

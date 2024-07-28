@@ -1,7 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://b3888v08vhh6j"]
+[gd_scene load_steps=33 format=3 uid="uid://b3888v08vhh6j"]
 
 [ext_resource type="Script" path="res://Scripts/Briefing.gd" id="1_m5i7h"]
 [ext_resource type="Theme" uid="uid://c78hinwaisvpk" path="res://Assets/Themes/GatoGelatoTheme.tres" id="2_05gcm"]
+[ext_resource type="Texture2D" uid="uid://dapq6quixbm0j" path="res://Assets/Sprites/Cutscenes/constM3.jpg" id="2_ew8y4"]
+[ext_resource type="Texture2D" uid="uid://cutcb5dqvltpt" path="res://Assets/Sprites/Cutscenes/telescope.JPG" id="3_eyrrn"]
 [ext_resource type="Texture2D" uid="uid://gq1lbwty3274" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-001.jpg" id="3_nnebd"]
 [ext_resource type="Texture2D" uid="uid://djo5q21yrl7ct" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-002.jpg" id="4_k0vpi"]
 [ext_resource type="Texture2D" uid="uid://d1apt76skpwem" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-003.jpg" id="5_pxslb"]
@@ -24,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://bqj3d47ptlkwe" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-020.jpg" id="22_vblep"]
 [ext_resource type="Texture2D" uid="uid://bsoqffyngt6wb" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-021.jpg" id="23_1w00h"]
 [ext_resource type="Texture2D" uid="uid://dq7q661cauc4f" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-022.jpg" id="24_7hhvl"]
+[ext_resource type="Texture2D" uid="uid://bx31ifsrakume" path="res://Assets/Sprites/Cutscenes/Cena biblioteca.jpg" id="25_sabod"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gk5rc"]
 animations = [{
@@ -108,7 +111,7 @@ length = 2.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Container/Sprite2D:sprite_frames")
+tracks/0/path = NodePath("Control/Container/Panel02:sprite_frames")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -120,7 +123,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Container/Sprite2D:frame")
+tracks/1/path = NodePath("Control/Container/Panel02:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -135,7 +138,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Container/Sprite2D:frame")
+tracks/0/path = NodePath("Control/Container/Panel02:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -152,10 +155,13 @@ _data = {
 "RESET": SubResource("Animation_l42yv")
 }
 
-[node name="Briefing" type="Node2D"]
+[node name="Briefing" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_m5i7h")
 
 [node name="Control" type="CenterContainer" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -169,32 +175,24 @@ size_flags_vertical = 6
 [node name="Container" type="Control" parent="Control"]
 layout_mode = 2
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Control/Container"]
+[node name="Panel04" type="Sprite2D" parent="Control/Container"]
+position = Vector2(576, 324)
+texture = ExtResource("2_ew8y4")
+
+[node name="Panel03" type="Sprite2D" parent="Control/Container"]
+position = Vector2(576, 324)
+texture = ExtResource("3_eyrrn")
+
+[node name="Panel02" type="AnimatedSprite2D" parent="Control/Container"]
 position = Vector2(576, 324)
 sprite_frames = SubResource("SpriteFrames_gk5rc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_3ld2q")
-}
+[node name="Panel025" type="Sprite2D" parent="Control/Container"]
+position = Vector2(576, 324)
+texture = ExtResource("3_nnebd")
 
-[node name="<-" type="Button" parent="."]
-offset_left = 104.0
-offset_top = 568.0
-offset_right = 173.0
-offset_bottom = 604.0
-theme = ExtResource("2_05gcm")
-text = "<-"
-
-[node name="->" type="Button" parent="."]
-offset_left = 992.0
-offset_top = 568.0
-offset_right = 1060.0
-offset_bottom = 604.0
-theme = ExtResource("2_05gcm")
-text = "->"
-
-[node name="Avancar" type="Button" parent="."]
+[node name="Avancar" type="Button" parent="Control/Container"]
+layout_mode = 0
 offset_left = 480.0
 offset_top = 32.0
 offset_right = 701.0
@@ -202,6 +200,33 @@ offset_bottom = 68.0
 theme = ExtResource("2_05gcm")
 text = "Decolar"
 
+[node name="Panel01" type="Sprite2D" parent="Control/Container"]
+position = Vector2(576, 324)
+texture = ExtResource("25_sabod")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3ld2q")
+}
+
+[node name="<-" type="Button" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 568.0
+offset_right = 173.0
+offset_bottom = 604.0
+theme = ExtResource("2_05gcm")
+text = "<"
+
+[node name="->" type="Button" parent="."]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 568.0
+offset_right = 1060.0
+offset_bottom = 604.0
+theme = ExtResource("2_05gcm")
+text = ">"
+
+[connection signal="pressed" from="Control/Container/Avancar" to="." method="_on_avancar_pressed"]
 [connection signal="pressed" from="<-" to="." method="_on_flip_back_pressed"]
 [connection signal="pressed" from="->" to="." method="_on_flip_forward_pressed"]
-[connection signal="pressed" from="Avancar" to="." method="_on_avancar_pressed"]

@@ -75,4 +75,4 @@ terrain_set_0/terrain_1/name = "Fill"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 terrain_set_0/terrain_2/name = "Borders2"
 terrain_set_0/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_yl7o1")
+sources/1 = SubResource("TileSetAtlasSource_yl7o1")

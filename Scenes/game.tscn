@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfww2l1c746yp"]
+[gd_scene load_steps=26 format=3 uid="uid://dfww2l1c746yp"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_dgi2b"]
+[ext_resource type="Texture2D" uid="uid://7x0w0msg2c2l" path="res://Assets/Sprites/UI/Life.png" id="5_nd4or"]
 [ext_resource type="Script" path="res://addons/post_processing/node/post_process.gd" id="7_c55rf"]
 [ext_resource type="Script" path="res://addons/post_processing/resource/post_processing_configuration.gd" id="8_04cba"]
 [ext_resource type="Script" path="res://Scripts/StarIcon.gd" id="8_5ctkv"]
@@ -9,9 +10,16 @@
 [ext_resource type="Script" path="res://Scripts/BookIcon.gd" id="10_funm8"]
 [ext_resource type="Theme" uid="uid://c78hinwaisvpk" path="res://Assets/Themes/GatoGelatoTheme.tres" id="10_l2cwi"]
 [ext_resource type="Texture2D" uid="uid://cqp1vyypsbou8" path="res://Assets/Sprites/Collectibles/book.png" id="11_tqml5"]
+[ext_resource type="Texture2D" uid="uid://n2nuqibkdbcj" path="res://Assets/Sprites/Cutscenes/title.jpg" id="12_gtulr"]
+[ext_resource type="Script" path="res://Scripts/ArrivalControl.gd" id="13_f5iti"]
+[ext_resource type="Texture2D" uid="uid://b3pumsh3efjeu" path="res://Assets/Sprites/Cutscenes/Planet 1.jpg" id="14_q8d6n"]
+[ext_resource type="Script" path="res://Scripts/Arrival.gd" id="15_u020p"]
 [ext_resource type="Script" path="res://Scripts/HPBar.gd" id="16_ciyej"]
-[ext_resource type="Texture2D" uid="uid://cy2en4aspprjm" path="res://Assets/Sprites/UI/temp_heart.jpg" id="17_1tl3n"]
-[ext_resource type="Texture2D" uid="uid://tj78uy1pqfen" path="res://Assets/Sprites/UI/New Project.jpg" id="18_db26j"]
+[ext_resource type="Texture2D" uid="uid://djybb0kfsj20t" path="res://Assets/Sprites/Ship/IMG_0276.PNG" id="16_qd864"]
+[ext_resource type="Texture2D" uid="uid://bj18qx0bvjiai" path="res://Assets/Sprites/Ship/IMG_0275.PNG" id="17_605xa"]
+[ext_resource type="Texture2D" uid="uid://cuirwvjl5sens" path="res://Assets/Sprites/Ship/IMG_0274.PNG" id="18_w1i31"]
+[ext_resource type="Texture2D" uid="uid://dogmbajsj3aa2" path="res://Assets/Sprites/Ship/IMG_0273.PNG" id="19_2kt6f"]
+[ext_resource type="Texture2D" uid="uid://dk8id7f6cykwv" path="res://Assets/Sprites/Ship/IMG_0262.PNG" id="20_725v4"]
 
 [sub_resource type="Resource" id="Resource_28o31"]
 script = ExtResource("8_04cba")
@@ -86,6 +94,38 @@ AnalogMonitorResolution = Vector2(256, 256)
 ScreenShake = false
 ScreenShakePower = 0.1
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_oong5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_qd864")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_605xa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_w1i31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2kt6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_725v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2kt6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_w1i31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_605xa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 25.0
+}]
+
 [sub_resource type="Sky" id="Sky_vmw7l"]
 
 [sub_resource type="Environment" id="Environment_uy1cj"]
@@ -113,6 +153,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+theme = ExtResource("10_l2cwi")
 
 [node name="HPBar" type="HBoxContainer" parent="CanvasLayer/LevelInterface" groups=["hpbar"]]
 z_index = 3
@@ -121,23 +162,23 @@ offset_left = 16.0
 offset_top = 15.0
 offset_right = 476.0
 offset_bottom = 158.0
-scale = Vector2(0.372867, 0.372867)
+scale = Vector2(0.111, 0.111)
 theme_override_constants/separation = 5
 script = ExtResource("16_ciyej")
 
 [node name="Heart1" type="TextureRect" parent="CanvasLayer/LevelInterface/HPBar"]
 layout_mode = 2
-texture = ExtResource("17_1tl3n")
+texture = ExtResource("5_nd4or")
 stretch_mode = 2
 
 [node name="Heart2" type="TextureRect" parent="CanvasLayer/LevelInterface/HPBar"]
 layout_mode = 2
-texture = ExtResource("17_1tl3n")
+texture = ExtResource("5_nd4or")
 stretch_mode = 2
 
 [node name="Heart3" type="TextureRect" parent="CanvasLayer/LevelInterface/HPBar"]
 layout_mode = 2
-texture = ExtResource("17_1tl3n")
+texture = ExtResource("5_nd4or")
 stretch_mode = 2
 
 [node name="WandXP" type="Control" parent="CanvasLayer/LevelInterface"]
@@ -160,6 +201,7 @@ offset_top = 15.0
 offset_right = 5.0
 offset_bottom = 55.0
 grow_horizontal = 2
+theme = ExtResource("10_l2cwi")
 script = ExtResource("9_a1136")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/LevelInterface/FuelBar"]
@@ -179,10 +221,11 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -144.0
-offset_top = 39.0
+offset_top = 49.0
 offset_right = 144.0
-offset_bottom = 75.0
+offset_bottom = 90.0
 grow_horizontal = 2
+theme = ExtResource("10_l2cwi")
 theme_override_font_sizes/font_size = 30
 text = "Combustível"
 horizontal_alignment = 1
@@ -190,9 +233,9 @@ horizontal_alignment = 1
 [node name="StarIcon" type="Control" parent="CanvasLayer/LevelInterface"]
 anchors_preset = 0
 offset_left = 574.0
-offset_top = 15.0
+offset_top = 8.0
 offset_right = 614.0
-offset_bottom = 55.0
+offset_bottom = 48.0
 script = ExtResource("8_5ctkv")
 
 [node name="Star" type="TextureRect" parent="CanvasLayer/LevelInterface/StarIcon"]
@@ -213,17 +256,18 @@ texture = ExtResource("9_dagl0")
 
 [node name="BookIcon" type="Control" parent="CanvasLayer/LevelInterface"]
 anchors_preset = 0
-offset_left = 519.0
+offset_left = 494.0
 offset_top = 15.0
-offset_right = 559.0
+offset_right = 534.0
 offset_bottom = 55.0
+scale = Vector2(0.73442, 0.73442)
 script = ExtResource("10_funm8")
 
 [node name="Book" type="TextureRect" parent="CanvasLayer/LevelInterface/BookIcon"]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 810.0
+offset_bottom = 821.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("11_tqml5")
 
@@ -251,22 +295,23 @@ theme = ExtResource("10_l2cwi")
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
-texture = ExtResource("18_db26j")
+scale = Vector2(0.90312, 0.90312)
+texture = ExtResource("12_gtulr")
 
 [node name="StartGame" type="Button" parent="CanvasLayer/MainMenu"]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 499.0
-offset_right = 264.0
-offset_bottom = 535.0
+offset_left = 396.0
+offset_top = 505.0
+offset_right = 574.0
+offset_bottom = 541.0
 text = "JOGAR"
 
 [node name="Quit" type="Button" parent="CanvasLayer/MainMenu"]
 layout_mode = 0
-offset_left = 93.0
-offset_top = 584.0
-offset_right = 136.0
-offset_bottom = 615.0
+offset_left = 449.0
+offset_top = 571.0
+offset_right = 526.0
+offset_bottom = 602.0
 text = "SAIR"
 
 [node name="Story" type="Control" parent="CanvasLayer"]
@@ -289,6 +334,31 @@ offset_bottom = 40.0
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Arrival01" type="CenterContainer" parent="CanvasLayer/Story"]
+z_index = 500
+layout_mode = 0
+offset_left = 576.0
+offset_top = 323.0
+offset_right = 576.0
+offset_bottom = 323.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+script = ExtResource("13_f5iti")
+
+[node name="Arrival" type="Sprite2D" parent="CanvasLayer/Story/Arrival01"]
+z_index = 3126
+texture = ExtResource("14_q8d6n")
+script = ExtResource("15_u020p")
+
+[node name="ShipFlying" type="AnimatedSprite2D" parent="CanvasLayer/Story/Arrival01/Arrival"]
+position = Vector2(-336, -112)
+scale = Vector2(0.123635, 0.123635)
+sprite_frames = SubResource("SpriteFrames_oong5")
+autoplay = "default"
+frame_progress = 0.491567
 
 [node name="QuakeTimer" type="Timer" parent="."]
 wait_time = 0.1

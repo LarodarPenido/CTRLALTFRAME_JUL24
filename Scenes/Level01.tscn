@@ -150,10 +150,12 @@ shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Visual/Node2D"]
+visible = false
 position = Vector2(-7.62939e-06, 0)
 occluder = SubResource("OccluderPolygon2D_ftq5k")
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="Visual/Node2D"]
+visible = false
 position = Vector2(1288, -3.05176e-05)
 occluder = SubResource("OccluderPolygon2D_ftq5k")
 
@@ -167,7 +169,7 @@ layer_0/tile_data = PackedInt32Array(-6, 1, 2, 65530, 1, 2, 131066, 1, 2, 196602
 position = Vector2(0, 72)
 tile_set = ExtResource("2_5l6gf")
 format = 2
-layer_0/tile_data = PackedInt32Array(-262139, 1, 4, -262138, 1, 4, -262137, 1, 4, -262136, 1, 4, -262135, 1, 4, -262134, 1, 4, -262133, 1, 4, -262132, 1, 4, -262131, 1, 4, -262130, 1, 4, -262129, 1, 4, -262128, 1, 4, -262127, 1, 4, -262126, 1, 4, -262125, 1, 4, -262124, 1, 4, -262123, 1, 4, -262122, 1, 4, -262121, 1, 4, -262120, 1, 4, -262119, 1, 4, -262118, 1, 4, -262117, 1, 4, -196613, 1, 4, -196614, 1, 4, -196615, 1, 4, -196616, 1, 4, -196617, 1, 4, -196618, 1, 4, -196619, 1, 4, -196620, 1, 4, -196621, 1, 4, -196622, 1, 4, -196623, 1, 4, -196624, 1, 4, -196625, 1, 4, -196626, 1, 4, -196627, 1, 4, -196628, 1, 4, -196629, 1, 4, -196630, 1, 4, -196631, 1, 4, -196632, 1, 4, -196633, 1, 4, -196634, 1, 4, -196635, 1, 4, -196636, 1, 4, -196637, 1, 4, -196638, 1, 4, -196639, 1, 4)
+layer_0/tile_data = PackedInt32Array(-262139, 1, 4, -262138, 1, 4, -262137, 1, 4, -262136, 1, 4, -262135, 1, 4, -262134, 1, 4, -262133, 1, 4, -262132, 1, 4, -262131, 1, 4, -262130, 1, 4, -262129, 1, 4, -262128, 1, 4, -262127, 1, 4, -262126, 1, 4, -262125, 1, 4, -262124, 1, 4, -262123, 1, 4, -262122, 1, 4, -262121, 1, 4, -262120, 1, 4, -262119, 1, 4, -262118, 1, 4, -262117, 1, 4, -196613, 1, 4, -196614, 1, 4, -196615, 1, 4, -196616, 1, 4, -196617, 1, 4, -196618, 1, 4, -196619, 1, 4, -196620, 1, 4, -196621, 1, 4, -196622, 1, 4, -196623, 1, 4, -196624, 1, 4, -196625, 1, 4, -196626, 1, 4, -196627, 1, 4, -196628, 1, 4, -196629, 1, 4, -196630, 1, 4, -196631, 1, 4, -196632, 1, 4, -196633, 1, 4, -196634, 1, 4, -196635, 1, 4, -196636, 1, 4, -196637, 1, 4, -196638, 1, 4, -196639, 1, 4, -131103, 1, 2, -131102, 1, 2, -131101, 1, 2, -131100, 1, 2, -131099, 1, 2, -131098, 1, 2, -131097, 1, 2, -131096, 1, 2, -131095, 1, 2, -131094, 1, 2, -131093, 1, 2, -131092, 1, 2, -131091, 1, 2, -131090, 1, 2, -131089, 1, 2, -131088, 1, 2, -131087, 1, 2, -131086, 1, 2, -131085, 1, 2, -131084, 1, 2, -131083, 1, 2, -131082, 1, 2, -131081, 1, 2, -131080, 1, 2, -131079, 1, 2, -131078, 1, 2, -131077, 1, 2, -196603, 1, 2, -196602, 1, 2, -196601, 1, 2, -196600, 1, 2, -196599, 1, 2, -196598, 1, 2, -196597, 1, 2, -196596, 1, 2, -196595, 1, 2, -196594, 1, 2, -196593, 1, 2, -196592, 1, 2, -196591, 1, 2, -196590, 1, 2, -196589, 1, 2, -196588, 1, 2, -196587, 1, 2, -196586, 1, 2, -196585, 1, 2, -196584, 1, 2, -196583, 1, 2, -196582, 1, 2, -196581, 1, 2)
 
 [node name="WalkerGenerator" type="Node" parent="."]
 script = ExtResource("2_gu4rp")
@@ -183,12 +185,13 @@ generator = NodePath("../WalkerGenerator")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Node2D" parent="Enemies" instance=ExtResource("13_we6ts")]
+position = Vector2(-48, 408)
 
 [node name="Node2D2" parent="Enemies" instance=ExtResource("13_we6ts")]
-position = Vector2(-240, 184)
+position = Vector2(-240, 304)
 
 [node name="Node2D3" parent="Enemies" instance=ExtResource("13_we6ts")]
-position = Vector2(56, 80)
+position = Vector2(56, 256)
 
 [node name="Node2D4" parent="Enemies" node_paths=PackedStringArray("stunned", "chase", "wander_timer") instance=ExtResource("13_we6ts")]
 position = Vector2(-368, 384)
@@ -228,10 +231,19 @@ wander_timer = NodePath("../Node2D3/Wander")
 
 [node name="CollectiblesManager" parent="." groups=["CollectiblesManager"] instance=ExtResource("14_dipkh")]
 
-[node name="Bounds" type="Node2D" parent="."]
-
 [node name="Player" parent="." instance=ExtResource("17_nflbd")]
 position = Vector2(-232, -96)
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+update_rotation = false
+update_scale = false
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PackedVector2Array(-368, -64, -352, -152, -296, -208, -216, -272, -72, -304, 64, -288, 192, -264, 272, -208, 328, -136, 336, -64, 376, -64, 376, -160, 344, -280, 232, -336, 32, -392, -208, -384, -376, -264, -472, -136, -456, -64)
+
+[editable path="Ship"]
 [editable path="Player"]
 [editable path="Player/Node2D"]
