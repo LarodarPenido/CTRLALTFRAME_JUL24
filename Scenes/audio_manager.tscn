@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cwy7ly2qoj4yq"]
+[gd_scene load_steps=30 format=3 uid="uid://cwy7ly2qoj4yq"]
 
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="1_dm0en"]
 [ext_resource type="AudioStream" uid="uid://2nb26u6yw7h8" path="res://Assets/Sounds/Excavation/rock-destroy-6409.mp3" id="2_y0xgk"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bkji1m4122ghi" path="res://Assets/Sounds/Ghost/sad-ghost-40303.mp3" id="10_5lad8"]
 [ext_resource type="AudioStream" uid="uid://bk1q4bprpk42x" path="res://Assets/Sounds/Ghost/dying-monster-101276.mp3" id="11_s42uy"]
 [ext_resource type="AudioStream" uid="uid://cupf2elmxgm1t" path="res://Assets/Sounds/Ghost/ghost-scream-37774.mp3" id="12_7a3oi"]
+[ext_resource type="AudioStream" uid="uid://bq630ou2gea6j" path="res://Assets/Sounds/Ghost/ghost-says-the-words-game-over-32172.mp3" id="16_5i8m3"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8gmyq"]
 random_pitch = 1.36
@@ -91,6 +92,11 @@ streams_count = 1
 stream_0/stream = ExtResource("12_7a3oi")
 stream_0/weight = 1.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8cy8k"]
+streams_count = 1
+stream_0/stream = ExtResource("16_5i8m3")
+stream_0/weight = 1.0
+
 [node name="AudioManager" type="Node2D" node_paths=PackedStringArray("music", "catnip_music") groups=["audiomanager"]]
 script = ExtResource("1_dm0en")
 music = NodePath("BGM/Music")
@@ -153,3 +159,7 @@ volume_db = 17.637
 [node name="GhostBanished" type="AudioStreamPlayer2D" parent="Enemies"]
 stream = SubResource("AudioStreamRandomizer_h3d7n")
 volume_db = 4.514
+
+[node name="GhostGameOver" type="AudioStreamPlayer2D" parent="Enemies"]
+stream = SubResource("AudioStreamRandomizer_8cy8k")
+volume_db = 24.0

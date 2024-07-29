@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b3888v08vhh6j"]
+[gd_scene load_steps=42 format=3 uid="uid://b3888v08vhh6j"]
 
 [ext_resource type="Script" path="res://Scripts/Briefing.gd" id="1_m5i7h"]
 [ext_resource type="Theme" uid="uid://c78hinwaisvpk" path="res://Assets/Themes/GatoGelatoTheme.tres" id="2_05gcm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cutcb5dqvltpt" path="res://Assets/Sprites/Cutscenes/telescope.JPG" id="3_eyrrn"]
 [ext_resource type="Texture2D" uid="uid://gq1lbwty3274" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-001.jpg" id="3_nnebd"]
 [ext_resource type="Texture2D" uid="uid://djo5q21yrl7ct" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-002.jpg" id="4_k0vpi"]
+[ext_resource type="FontFile" uid="uid://cohvac2hqvede" path="res://Assets/Fonts/Gatolomeu-Regular.ttf" id="5_dq2pc"]
 [ext_resource type="Texture2D" uid="uid://d1apt76skpwem" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-003.jpg" id="5_pxslb"]
 [ext_resource type="Texture2D" uid="uid://drcgkpei2op52" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-004.jpg" id="6_rw0wk"]
 [ext_resource type="Texture2D" uid="uid://oibc5mpjwgcu" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-005.jpg" id="7_dl4lq"]
@@ -27,6 +28,83 @@
 [ext_resource type="Texture2D" uid="uid://bsoqffyngt6wb" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-021.jpg" id="23_1w00h"]
 [ext_resource type="Texture2D" uid="uid://dq7q661cauc4f" path="res://Assets/Sprites/Cutscenes/Book01/ezgif-frame-022.jpg" id="24_7hhvl"]
 [ext_resource type="Texture2D" uid="uid://bx31ifsrakume" path="res://Assets/Sprites/Cutscenes/Cena biblioteca.jpg" id="25_sabod"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7iicp"]
+bg_color = Color(0.437803, 0.467258, 0.855938, 1)
+skew = Vector2(0.22, 0)
+border_width_left = 10
+border_color = Color(0.330189, 0.369819, 0.726078, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_bottom = 5.0
+shadow_size = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03nfl"]
+bg_color = Color(0.552433, 0.541849, 0.957053, 1)
+border_width_left = 10
+border_color = Color(0.475579, 0.548765, 0.919414, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wc0h"]
+bg_color = Color(0.421133, 0.478327, 0.838924, 1)
+skew = Vector2(0.495, 0)
+corner_radius_top_left = 30
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aa3ao"]
+bg_color = Color(0.971891, 0.39411, 0, 1)
+skew = Vector2(0.465, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_meu2b"]
+bg_color = Color(0.690196, 0.368627, 0.721569, 1)
+skew = Vector2(0.13, 0)
+border_width_left = 90
+border_width_top = 55
+border_width_right = 45
+border_width_bottom = 55
+border_color = Color(0.8, 0.4, 0.8, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxhp3"]
+bg_color = Color(0.725703, 0.563596, 0.426934, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2fn0"]
+bg_color = Color(0.425369, 0.657817, 0.56309, 1)
+
+[sub_resource type="Theme" id="Theme_jjoby"]
+default_font = ExtResource("5_dq2pc")
+default_font_size = 40
+Button/colors/font_color = Color(0.982836, 0.93708, 0.917329, 1)
+Button/constants/h_separation = 5
+Button/fonts/font = ExtResource("5_dq2pc")
+Button/styles/hover = SubResource("StyleBoxFlat_7iicp")
+Button/styles/normal = SubResource("StyleBoxFlat_03nfl")
+Button/styles/pressed = SubResource("StyleBoxFlat_4wc0h")
+HSeparator/constants/separation = 40
+HSeparator/styles/separator = SubResource("StyleBoxFlat_aa3ao")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_meu2b")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_mxhp3")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_d2fn0")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gk5rc"]
 animations = [{
@@ -158,6 +236,7 @@ _data = {
 [node name="Briefing" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("2_05gcm")
 script = ExtResource("1_m5i7h")
 
 [node name="Control" type="CenterContainer" parent="."]
@@ -179,18 +258,6 @@ layout_mode = 2
 position = Vector2(576, 324)
 texture = ExtResource("2_ew8y4")
 
-[node name="Panel03" type="Sprite2D" parent="Control/Container"]
-position = Vector2(576, 324)
-texture = ExtResource("3_eyrrn")
-
-[node name="Panel02" type="AnimatedSprite2D" parent="Control/Container"]
-position = Vector2(576, 324)
-sprite_frames = SubResource("SpriteFrames_gk5rc")
-
-[node name="Panel025" type="Sprite2D" parent="Control/Container"]
-position = Vector2(576, 324)
-texture = ExtResource("3_nnebd")
-
 [node name="Avancar" type="Button" parent="Control/Container"]
 layout_mode = 0
 offset_left = 480.0
@@ -200,9 +267,65 @@ offset_bottom = 68.0
 theme = ExtResource("2_05gcm")
 text = "Decolar"
 
+[node name="Panel03" type="Sprite2D" parent="Control/Container"]
+visible = false
+position = Vector2(576, 324)
+texture = ExtResource("3_eyrrn")
+
+[node name="Label3" type="Label" parent="Control/Container/Panel03"]
+offset_left = -512.0
+offset_top = -300.0
+offset_right = 488.0
+offset_bottom = -53.0
+theme = SubResource("Theme_jjoby")
+text = "Gatolomeu observou e confirmou o feito de seus vizinhos estelares. Sentiu que este projeto era algo que valia  a pena e decidiu visitar os planetas em busca das estrelas perdidas!
+"
+autowrap_mode = 2
+
+[node name="Panel02" type="AnimatedSprite2D" parent="Control/Container"]
+visible = false
+modulate = Color(0.87, 0.87, 0.87, 1)
+position = Vector2(576, 324)
+sprite_frames = SubResource("SpriteFrames_gk5rc")
+
+[node name="Label3" type="Label" parent="Control/Container/Panel02"]
+offset_left = -512.0
+offset_top = -300.0
+offset_right = 488.0
+offset_bottom = -53.0
+theme = ExtResource("2_05gcm")
+text = "As estrelas perdidas ainda devem estar nos planetas que pertenciam aos antigos. O Mapa para os Planetas rasgado, mas a parte que sobrou mostra onde fica o primeiro. Ele pode guardar pistas de como chegar aos outros dois."
+autowrap_mode = 2
+
+[node name="Panel025" type="Sprite2D" parent="Control/Container"]
+visible = false
+modulate = Color(0.79, 0.79, 0.79, 1)
+position = Vector2(576, 324)
+texture = ExtResource("3_nnebd")
+
+[node name="Label2" type="Label" parent="Control/Container/Panel025"]
+offset_left = -512.0
+offset_top = -268.0
+offset_right = 488.0
+offset_bottom = -21.0
+theme = ExtResource("2_05gcm")
+text = "Este povo descobriu uma forma de condensar a energia de estrelas em um pequeno dispositvo. Mas algo deu errado... a quantidade imensa de energia quebrou uma barreira entre universos. "
+autowrap_mode = 2
+
 [node name="Panel01" type="Sprite2D" parent="Control/Container"]
+visible = false
 position = Vector2(576, 324)
 texture = ExtResource("25_sabod")
+
+[node name="Label" type="Label" parent="Control/Container/Panel01"]
+offset_left = -512.0
+offset_top = -268.0
+offset_right = 7.0
+offset_bottom = -181.0
+theme = ExtResource("2_05gcm")
+text = "Em um Gatoverso muito distante, o aprendiz de astronomia Gatolomeu explorava a biblioteca da Universidade. Ele encontra um livro diferente, sem nome. Ao abri-lo, descobre a misteriosa lenda de uma poderosa sociedade esquecida.
+"
+autowrap_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

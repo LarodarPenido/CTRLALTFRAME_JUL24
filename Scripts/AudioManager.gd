@@ -16,6 +16,7 @@ extends Node2D
 @onready var ghost_haunt = $Enemies/GhostHaunt
 @onready var ghost_stun = $Enemies/GhostStun
 @onready var ghost_banished = $Enemies/GhostBanished
+@onready var ghost_game_over = $Enemies/GhostGameOver
 
 @export var music: AudioStreamPlayer
 @export var catnip_music: AudioStreamPlayer
@@ -73,3 +74,10 @@ func play_player_float():
 	player_float.play()
 func play_player_fire():
 	player_fire.play()
+
+
+func play_gameover():
+	ghost_game_over.play()
+	
+func stop_gameover():
+	ghost_game_over.stop()

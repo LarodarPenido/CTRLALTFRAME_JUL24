@@ -11,6 +11,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	label.text = "Magic Power: " + str(game.wand_level)
+	label.text = "Poder: " + str(game.wand_level)
 	
 	

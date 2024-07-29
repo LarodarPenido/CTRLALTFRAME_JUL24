@@ -10,16 +10,24 @@ config_version=5
 
 [application]
 
-config/name="CTRLALTFRAME_JUL24"
+config/name="StarSeeker"
+config/description="Jogo feito para CTRL ALT FRAME 2024"
 run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="res://Assets/Sprites/Cutscenes/Cena biblioteca.png"
+config/icon="res://Assets/Sprites/Collectibles/catnip.png"
 
 [autoload]
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 Game="*res://Scenes/game.tscn"
 AudioManager="*res://Scenes/audio_manager.tscn"
+
+[display]
+
+window/size/mode=3
+window/size/borderless=true
+window/stretch/mode="viewport"
 
 [editor_plugins]
 

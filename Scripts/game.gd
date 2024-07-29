@@ -221,7 +221,8 @@ func enter_gameover():
 
 func exit_gameover():
 	reset_finds()
-	player.reset_player()
+	if player:
+		player.reset_player()
 
 func enter_end():
 	level_interface.hide()
@@ -229,7 +230,7 @@ func enter_end():
 
 func exit_end():
 	reset_finds()
-	player.reset_player()
+	#player.reset_player()
 
 func _on_start_game_pressed():
 	change_state(States.BRIEFING)
@@ -294,6 +295,8 @@ func _update_fuel_bar():
 	fuel_level += 1
 	if fuel_level == 10:
 		fuel_full = true
+	else:
+		fuel_full = false
 	check_level_complete()
 
 func _collect_red_mineral():
@@ -315,7 +318,6 @@ func reset_finds():
 
 func retry_level():
 		get_tree().change_scene_to_file(current_level)
-
 
 func check_level_complete():
 	if fuel_full and book_found and star_found:

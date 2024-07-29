@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://tiggov82d662"]
+[gd_scene load_steps=5 format=3 uid="uid://tiggov82d662"]
 
 [ext_resource type="Theme" uid="uid://c78hinwaisvpk" path="res://Assets/Themes/GatoGelatoTheme.tres" id="1_5kkhh"]
-[ext_resource type="Script" path="res://Scripts/game_over.gd" id="2_jpq8s"]
+[ext_resource type="Script" path="res://Scripts/ending.gd" id="2_4ig27"]
 [ext_resource type="Texture2D" uid="uid://cc6vkbyi8thf4" path="res://Assets/Sprites/Cutscenes/constfull.jpg" id="3_k5uaj"]
+[ext_resource type="Texture2D" uid="uid://cpmsts2soucam" path="res://Assets/Sprites/Cutscenes/ending.jpg" id="4_7dngi"]
 
 [node name="Ending" type="Control"]
 clip_contents = true
@@ -13,32 +14,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_5kkhh")
-script = ExtResource("2_jpq8s")
+script = ExtResource("2_4ig27")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1150.8
-offset_bottom = 642.865
+[node name="TextureRect" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
 texture = ExtResource("3_k5uaj")
-expand_mode = 1
+
+[node name="Label2" type="Label" parent="TextureRect"]
+offset_left = -542.0
+offset_top = -302.0
+offset_right = 535.395
+offset_bottom = -113.0
+theme = ExtResource("1_5kkhh")
+text = "As estrelas foram devolvidas a 
+seus devidos lugares e 
+as almas da antiga
+ sociedade puderam
+ finalmente
+ descansar em paz."
+
+[node name="TextureRect2" type="Sprite2D" parent="."]
+position = Vector2(573, 319)
+texture = ExtResource("4_7dngi")
+
+[node name="Label" type="Label" parent="TextureRect2"]
+offset_left = -500.0
+offset_top = -287.0
+offset_right = 529.0
+offset_bottom = -226.0
+theme = ExtResource("1_5kkhh")
+text = "Gatolomeu cumpriu sua tarefa e recebeu o reconhecimento que buscava.
+"
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 745.0
+offset_left = 418.0
 offset_top = 564.0
-offset_right = 1107.0
+offset_right = 780.0
 offset_bottom = 600.0
 text = "Menu Principal"
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 29.0
-offset_right = 757.0
-offset_bottom = 58.0
-text = "As estrelas foram 
-devolvidas a seus 
-devidos lugares.
-"
+[node name="<-" type="Button" parent="."]
+offset_left = 104.0
+offset_top = 568.0
+offset_right = 173.0
+offset_bottom = 604.0
+theme = ExtResource("1_5kkhh")
+text = "<"
+
+[node name="->" type="Button" parent="."]
+offset_left = 992.0
+offset_top = 568.0
+offset_right = 1060.0
+offset_bottom = 604.0
+theme = ExtResource("1_5kkhh")
+text = ">"
 
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="<-" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="->" to="." method="_on_forward_pressed"]

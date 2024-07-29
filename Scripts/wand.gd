@@ -29,7 +29,7 @@ func _ready():
 func _process(delta):
 	if game:
 		if !player.catnip_power:
-			current_spell_cooldown = .3 - (game.wand_level * .05)
+			current_spell_cooldown = .3 - (game.wand_level * .03)
 			#current_spell_cooldown = spell_cooldown - (game.wand_level * .05)
 		else:
 			current_spell_cooldown = (.3 - (game.wand_level * .02)) / 3
